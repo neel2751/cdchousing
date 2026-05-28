@@ -1,0 +1,167 @@
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  background: #1a1a1a;
+  z-index: 9999;
+  transform-origin: top;
+  animation: curtainReveal 1.4s cubic-bezier(0.76, 0, 0.24, 1) 0.5s forwards;
+}
+
+@keyframes curtainReveal {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.stagger-children.animated > *:nth-child(1) { animation: fadeUp 0.8s 0.1s var(--transition-smooth) forwards; }
+.stagger-children.animated > *:nth-child(2) { animation: fadeUp 0.8s 0.2s var(--transition-smooth) forwards; }
+.stagger-children.animated > *:nth-child(3) { animation: fadeUp 0.8s 0.3s var(--transition-smooth) forwards; }
+.stagger-children.animated > *:nth-child(4) { animation: fadeUp 0.8s 0.4s var(--transition-smooth) forwards; }
+.stagger-children.animated > *:nth-child(5) { animation: fadeUp 0.8s 0.5s var(--transition-smooth) forwards; }
+.stagger-children.animated > *:nth-child(6) { animation: fadeUp 0.8s 0.6s var(--transition-smooth) forwards; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.word-reveal {
+  overflow: hidden;
+  display: inline-block;
+}
+.word-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: wordReveal 0.9s var(--transition-smooth) forwards;
+}
+
+@keyframes wordReveal {
+  to { transform: translateY(0); }
+}
+
+.line-draw {
+  position: relative;
+}
+.line-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #c8a96e;
+  transition: width 0.6s var(--transition-smooth);
+}
+.line-draw:hover::after {
+  width: 100%;
+}
+
+.magnetic-btn {
+  transition: transform 0.3s var(--transition-luxury);
+}
+.magnetic-btn:hover {
+  transform: translateY(-6px);
+}
+.parallax-container {
+  overflow: hidden;
+}
+.parallax-image {
+  transform: scale(1.15);
+  will-change: transform;
+  transition: transform 0s linear;
+}
+.parallax-container:hover .parallax-image {
+  transform: scale(1.15) translateY(-20px);
+  transition: transform 0.5s var(--transition-smooth);
+}
+.card-hover {
+  transition: transform 0.5s var(--transition-smooth),
+              box-shadow 0.5s var(--transition-smooth);
+}
+.card-hover:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.image-zoom-container {
+  overflow: hidden;
+}
+.image-zoom-container img {
+  transition: transform 0.8s var(--transition-luxury);
+}
+.image-zoom-container:hover img {
+  transform: scale(1.08);
+}
+
+.counter-number {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.overlay-slide {
+  position: relative;
+  overflow: hidden;
+}
+.overlay-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #c8a96e;
+  transform: translateX(-100%);
+  transition: transform 0.5s var(--transition-smooth);
+  z-index: 1;
+}
+.overlay-slide:hover::before {
+  transform: translateX(0);
+}
+.overlay-slide-content {
+  position: relative;
+  z-index: 2;
+  transition: color 0.5s var(--transition-smooth);
+}
+.cursor-blend {
+  mix-blend-mode: difference;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.text-shimmer {
+  background: linear-gradient(90deg, #c8a96e 25%, #fff8ee 50%, #c8a96e 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.floating {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+.scroll-indicator {
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes growLine {
+  from { transform: scaleX(0); transform-origin: left; }
+  to { transform: scaleX(1); transform-origin: left; }
+}
+.grow-line {
+  animation: growLine 1s var(--transition-smooth) forwards;
+}
+
+@keyframes bgPan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}

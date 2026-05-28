@@ -74,7 +74,7 @@ export default function ProjectDetailPage({ params }: Props) {
               <p className="text-xs tracking-widest uppercase text-primary/40 mb-1">Status</p>
               <p className="font-serif text-xl text-primary capitalize">{project.status}</p>
             </div>
-            
+            <a
               href="/contact"
               className="block w-full text-center bg-primary text-white text-xs tracking-widest uppercase py-4 hover:bg-secondary transition-all duration-500 mt-4"
             >

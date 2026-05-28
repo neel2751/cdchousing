@@ -14,7 +14,6 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
       <div className="pt-32 pb-16 bg-primary">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection animation="fade-up">
@@ -25,7 +24,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Story */}
       <div className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <AnimatedSection animation="fade-right">
           <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Our Story</p>
@@ -59,7 +57,6 @@ export default function AboutPage() {
         </AnimatedSection>
       </div>
 
-      {/* Values */}
       <div className="bg-accent py-24">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection animation="fade-up" className="text-center mb-16">
