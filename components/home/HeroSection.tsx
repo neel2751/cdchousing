@@ -1,154 +1,120 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import AnimatedSection from "@/components/shared/AnimatedSection";
 
-const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800",
-    tagline: "Building",
-    highlight: "Legacies",
-    sub: "Luxury residences and commercial spaces crafted for generations.",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800",
-    tagline: "Crafting",
-    highlight: "Dreams",
-    sub: "From concept to possession — excellence at every step.",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1800",
-    tagline: "Defining",
-    highlight: "Gujarat",
-    sub: "Premium developments across Ahmedabad, Surat and beyond.",
-  },
+const heroImages = [
+  "/images/hero-1.jpg",
+  "/images/hero-2.jpg",
+  "/images/hero-3.jpg",
 ];
 
 export default function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const goToSlide = (index: number) => {
-    if (isTransitioning || index === currentSlide) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide(index);
-      setIsTransitioning(false);
-    }, 600);
-  };
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    if (heroImages.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent((i) => (i + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
-  const slide = slides[currentSlide];
-
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="bg-light pt-32 md:pt-40 pb-20 md:pb-28">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
 
-      {slides.map((s, i) => (
-        <div
-          key={i}
-          className="absolute inset-0 transition-opacity duration-1200 ease-in-out"
-          style={{ opacity: i === currentSlide ? 1 : 0 }}
-        >
-          <img
-            src={s.image}
-            alt=""
-            className="w-full h-full object-cover scale-105 transition-transform duration-8000"
-            style={{ transform: i === currentSlide ? "scale(1)" : "scale(1.05)" }}
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/30 to-black/70" />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-center">
+
+          <AnimatedSection animation="fade-right" className="md:col-span-3">
+            <h1 className="font-serif text-3xl md:text-4xl text-primary leading-tight">
+              European Standards
+              <br />
+              Bespoke Design
+              <br />
+              Built in Bangladesh.
+            </h1>
+          </AnimatedSection>
+
+          <AnimatedSection animation="scale" delay={100} className="md:col-span-5">
+            <div
+              className="relative overflow-hidden group w-full"
+              style={{ aspectRatio: "3 / 4" }}
+            >
+              {heroImages.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt="CDC Housing residential development"
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                  style={{ opacity: i === current ? 1 : 0 }}
+                />
+              ))}
+
+              {heroImages.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+                  {heroImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrent(i)}
+                      aria-label={`Show image ${i + 1}`}
+                      className={`h-px transition-all duration-500 ${
+                        i === current ? "w-8 bg-white" : "w-3 bg-white/50 hover:bg-white/80"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-left" delay={150} className="md:col-span-4">
+            <p className="text-primary/70 leading-relaxed">
+              CDC Housing brings European standard planning with bespoke architectural
+              design to develop high quality residential and commercial spaces in
+              Bangladesh. We are creating modern homes built with quality, comfort and
+              long term value in mind.
+            </p>
+          </AnimatedSection>
+
         </div>
-      ))}
 
-      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 max-w-7xl mx-auto">
-        <div
-          className="overflow-hidden"
-          key={`tagline-${currentSlide}`}
-        >
-          <p
-            className="text-secondary text-sm tracking-[0.4em] uppercase mb-4"
-            style={{ animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards" }}
-          >
-            CDC Housing — Since 1995
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 items-center mt-16 md:mt-20">
+          <AnimatedSection animation="fade-right" className="md:col-span-4">
+            <h2 className="font-serif text-3xl md:text-4xl text-secondary leading-tight">
+              Developing
+              <br />
+              Tomorrow&apos;s
+              <br />
+              Bangladesh
+            </h2>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-left" delay={100} className="md:col-span-8">
+            <p className="text-primary/70 leading-relaxed max-w-2xl">
+              CDC Housing is committed to building more than properties. We create
+              thoughtfully designed spaces that improve everyday living, support modern
+              urban lifestyles, and contribute to a better future for Bangladesh.
+            </p>
+          </AnimatedSection>
         </div>
 
-        <div className="overflow-hidden mb-2" key={`title-${currentSlide}`}>
-          <h1
-            className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-none"
-            style={{ animation: "fadeUp 0.9s 0.1s cubic-bezier(0.16,1,0.3,1) both" }}
-          >
-            {slide.tagline}
-          </h1>
-        </div>
-        <div className="overflow-hidden mb-6">
-          <h1
-            className="font-serif text-6xl md:text-8xl lg:text-9xl text-secondary leading-none italic"
-            key={`highlight-${currentSlide}`}
-            style={{ animation: "fadeUp 0.9s 0.18s cubic-bezier(0.16,1,0.3,1) both" }}
-          >
-            {slide.highlight}
-          </h1>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mt-20 md:mt-28">
+          <AnimatedSection animation="fade-right">
+            <h2 className="font-serif text-3xl md:text-4xl text-primary">
+              Our Foundation for Building Excellence
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection animation="fade-left" delay={100}>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 border border-secondary text-secondary text-xs tracking-widest uppercase px-8 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500 whitespace-nowrap"
+            >
+              Get in Touch
+            </Link>
+          </AnimatedSection>
         </div>
 
-        <div className="overflow-hidden">
-          <p
-            className="text-white/60 text-lg max-w-lg leading-relaxed"
-            key={`sub-${currentSlide}`}
-            style={{ animation: "fadeUp 0.9s 0.28s cubic-bezier(0.16,1,0.3,1) both" }}
-          >
-            {slide.sub}
-          </p>
-        </div>
-
-        <div
-          className="flex gap-4 mt-10"
-          style={{ animation: "fadeUp 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) both" }}
-        >
-          <Link
-            href="/projects"
-            className="group flex items-center gap-3 bg-secondary text-white text-xs tracking-widest uppercase px-8 py-4 hover:bg-secondary/90 transition-all duration-300"
-          >
-            View Projects
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </Link>
-          <Link
-            href="/about"
-            className="flex items-center gap-3 border border-white/40 text-white text-xs tracking-widest uppercase px-8 py-4 hover:border-secondary hover:text-secondary transition-all duration-500"
-          >
-            Our Story
-          </Link>
-        </div>
-      </div>
-
-      <div className="absolute bottom-12 left-6 md:left-16 z-10 flex gap-3">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goToSlide(i)}
-            className={`transition-all duration-500 ${
-              i === currentSlide
-                ? "w-12 h-px bg-secondary"
-                : "w-4 h-px bg-white/30 hover:bg-white/60"
-            }`}
-          />
-        ))}
-      </div>
-
-      <div className="absolute bottom-12 right-6 md:right-16 z-10 flex flex-col items-center gap-2 scroll-indicator">
-        <span className="text-white/40 text-xs tracking-widest uppercase rotate-90 origin-center mb-6">
-          Scroll
-        </span>
-        <div className="w-px h-16 bg-linear-to-b from-white/40 to-transparent" />
       </div>
     </section>
   );

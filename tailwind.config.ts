@@ -15,10 +15,10 @@ const config: Config = {
       "2xl": "1536px",
     },
     extend: {
-      colors: {
+    colors: {
         primary: "#1a1a1a",
-        secondary: "#c8a96e",
-        accent: "#f5f0e8",
+        secondary: "#d96a3f",
+        accent: "#f7f2ea",
         dark: "#0d0d0d",
         light: "#fafafa",
       },

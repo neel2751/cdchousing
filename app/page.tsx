@@ -1,22 +1,22 @@
 import HeroSection from "@/components/home/HeroSection";
-import LegacySection from "@/components/home/LegacySection";
-import ProcessSection from "@/components/home/ProcessSection";
+import FoundationTimeline from "@/components/home/FoundationTimeline";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
-import StatisticsSection from "@/components/about/StatisticsSection";
+import DesignPartner from "@/components/home/DesignPartner";
+import MediaBlogs from "@/components/home/MediaBlogs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CDC Housing — Building Legacies Across Gujarat",
+  title: "CDC Housing — European Standards, Bespoke Design, Built in Bangladesh",
 };
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <LegacySection />
-      <ProcessSection />
+      <FoundationTimeline />
       <FeaturedProjects />
-      <StatisticsSection />
+      <DesignPartner />
+      <MediaBlogs />
     </>
   );
 }

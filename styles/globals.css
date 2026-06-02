@@ -10,9 +10,9 @@
   --font-playfair: 'Playfair Display', serif;
 
   --color-primary:   #1a1a1a;
-  --color-secondary: #c8a96e;
-  --color-secondary-dark: #a67c4d;
-  --color-accent:    #f5f0e8;
+  --color-secondary:  #d96a3f;
+  --color-secondary-dark: #b9552f;
+  --color-accent:     #f7f2ea;
   --color-light:     #fafafa;
   --color-white:     #ffffff;
 
@@ -351,6 +351,18 @@ html.lenis {
   to   { transform: scaleY(1); transform-origin: bottom; }
 }
 
+@keyframes blockRevealText {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes blockWipe {
+  0%   { transform: scaleX(0); transform-origin: left; }
+  45%  { transform: scaleX(1); transform-origin: left; }
+  55%  { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
 @keyframes shimmer {
   from { background-position: -200% center; }
   to   { background-position:  200% center; }
@@ -417,6 +429,26 @@ html.lenis {
 .word-reveal-wrap.animated .word:nth-child(3) { animation-delay: 0.14s; }
 .word-reveal-wrap.animated .word:nth-child(4) { animation-delay: 0.21s; }
 .word-reveal-wrap.animated .word:nth-child(5) { animation-delay: 0.28s; }
+
+.block-reveal {
+  position: relative;
+  display:  inline-block;
+}
+.block-reveal > .br-text {
+  display:   inline-block;
+  clip-path: inset(0 100% 0 0);
+}
+.block-reveal.animate > .br-text {
+  animation: blockRevealText var(--dur-normal) 0.45s var(--transition-sharp) forwards;
+}
+.block-reveal > .br-cover {
+  position:  absolute;
+  inset:     0;
+  transform: scaleX(0);
+}
+.block-reveal.animate > .br-cover {
+  animation: blockWipe 1s var(--transition-sharp) forwards;
+}
 
 .hover-underline {
   position:        relative;
@@ -765,6 +797,12 @@ html.lenis {
   .floating-slow,
   .floating-fast {
     animation: none !important;
+  }
+  .block-reveal > .br-text {
+    clip-path: inset(0 0% 0 0) !important;
+  }
+  .block-reveal > .br-cover {
+    display: none !important;
   }
 }
 

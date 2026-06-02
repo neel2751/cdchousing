@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Project } from "@/data/projects";
 import ImageCarousel from "./ImageCarousel";
+import AnimatedSection from "@/components/shared/AnimatedSection";
 
 interface Props {
   project: Project;
@@ -19,49 +20,49 @@ export default function ProjectDetailView({ project }: Props) {
 
   const statusColor =
     project.status === "completed"
-      ? "bg-green-700/20 text-green-700 border-green-700/30"
+      ? "bg-green-700/15 text-green-700 border-green-700/30"
       : project.status === "ongoing"
-      ? "bg-secondary/20 text-secondary border-secondary/30"
+      ? "bg-secondary/15 text-secondary border-secondary/40"
       : "bg-primary/10 text-primary border-primary/20";
 
   return (
     <>
-      <div className="relative h-[70vh] overflow-hidden">
+      <div className="relative h-[65vh] md:h-[70vh] overflow-hidden">
         <img
           src={project.images[0]}
           alt={project.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-black/75" />
 
         <Link
           href="/projects"
-          className="absolute top-28 left-6 md:left-16 z-10 flex items-center gap-2 text-white/60 text-xs tracking-widest uppercase hover:text-secondary transition-colors duration-300"
+          className="absolute top-28 md:top-32 left-5 md:left-16 z-10 flex items-center gap-2 text-white/70 text-xs tracking-widest uppercase hover:text-secondary transition-colors duration-300"
         >
           <span>←</span> All Projects
         </Link>
 
-        <div className="absolute bottom-12 left-6 md:left-16 z-10 max-w-2xl">
+        <div className="absolute bottom-10 md:bottom-12 left-5 md:left-16 z-10 max-w-2xl pr-5">
           <span className="text-secondary text-xs tracking-[0.4em] uppercase block mb-3">
             {project.category}
           </span>
-          <h1 className="font-serif text-5xl md:text-7xl text-white leading-tight mb-3">
+          <h1 className="font-serif text-4xl md:text-7xl text-white leading-tight mb-3">
             {project.name}
           </h1>
-          <p className="text-white/60 text-sm">{project.location}</p>
+          <p className="text-white/70 text-sm">{project.location}</p>
         </div>
 
-        <div className={`absolute top-28 right-6 md:right-16 border text-xs px-4 py-1.5 tracking-widest uppercase ${statusColor}`}>
+        <div className={`absolute top-28 md:top-32 right-5 md:right-16 border text-xs px-4 py-1.5 tracking-widest uppercase backdrop-blur-sm ${statusColor}`}>
           {project.status}
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div className="max-w-7xl mx-auto px-5 md:px-6 py-20 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
 
-          <div className="lg:col-span-2">
+          <AnimatedSection animation="fade-right" className="lg:col-span-2">
             <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-6">Overview</p>
-            <p className="font-serif text-2xl text-primary leading-relaxed mb-8">
+            <p className="font-serif text-xl md:text-2xl text-primary leading-relaxed mb-8">
               {project.description}
             </p>
             <div className="w-12 h-px bg-secondary mb-8" />
@@ -69,23 +70,23 @@ export default function ProjectDetailView({ project }: Props) {
               {project.fullDescription}
             </p>
 
-            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-6">Features & Amenities</p>
+            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-6">Features &amp; Amenities</p>
             <div className="flex flex-wrap gap-3">
               {project.features.map((feature) => (
                 <span
                   key={feature}
-                  className="border border-primary/20 text-primary/60 text-xs tracking-widest uppercase px-4 py-2 hover:border-secondary hover:text-secondary transition-all duration-300"
+                  className="border border-primary/20 text-primary/60 text-xs tracking-widest uppercase px-4 py-2 rounded-full hover:border-secondary hover:text-secondary transition-all duration-300"
                 >
                   {feature}
                 </span>
               ))}
             </div>
-          </div>
+          </AnimatedSection>
 
-          <div>
-            <div className="bg-accent p-8 mb-8">
+          <AnimatedSection animation="fade-left">
+            <div className="bg-accent p-8 mb-6">
               <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">Project Details</p>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {[
                   { label: "Status", value: project.status.charAt(0).toUpperCase() + project.status.slice(1) },
                   { label: "Year", value: project.year },
@@ -104,23 +105,21 @@ export default function ProjectDetailView({ project }: Props) {
 
             <Link
               href="/contact"
-              className="block w-full bg-secondary text-white text-xs tracking-widest uppercase px-8 py-5 text-center hover:bg-secondary/90 transition-all duration-300 group"
+              className="group flex items-center justify-center gap-3 w-full border border-secondary text-secondary text-xs tracking-widest uppercase px-8 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500"
             >
-              <span className="flex items-center justify-center gap-3">
-                Enquire About This Project
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </span>
+              Enquire About This Project
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
-          </div>
+          </AnimatedSection>
         </div>
 
-        <div className="mt-24">
+        <div className="mt-20 md:mt-24">
           <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">Gallery</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {project.images.map((img, i) => (
               <div
                 key={i}
-                className="overflow-hidden aspect-[4/3] cursor-pointer group relative"
+                className="overflow-hidden aspect-4/3 cursor-pointer group relative"
                 onClick={() => openCarousel(i)}
               >
                 <img

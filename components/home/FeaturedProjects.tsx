@@ -5,78 +5,81 @@ import { projects } from "@/data/projects";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
 export default function FeaturedProjects() {
-  const featured = projects.slice(0, 4);
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [index, setIndex] = useState(0);
+  const total = projects.length;
+
+  const prev = () => setIndex((i) => (i - 1 + total) % total);
+  const next = () => setIndex((i) => (i + 1) % total);
+
+  const current = projects[index];
+  const left = projects[(index - 1 + total) % total];
+  const right = projects[(index + 1) % total];
 
   return (
-    <section className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="pt-20 md:pt-24 pb-24 md:pb-32 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
 
-        <div className="flex justify-between items-end mb-16">
+        <div className="flex justify-between items-center mb-12 md:mb-16">
           <AnimatedSection animation="fade-right">
-            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Portfolio</p>
-            <h2 className="font-serif text-5xl text-primary">Featured Projects</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-primary">Featured Projects</h2>
           </AnimatedSection>
           <AnimatedSection animation="fade-left">
             <Link
               href="/projects"
-              className="hidden md:inline-flex items-center gap-3 text-sm tracking-widest uppercase group"
+              className="inline-flex items-center gap-3 border border-secondary text-secondary text-xs tracking-widest uppercase px-7 py-3.5 rounded-full hover:bg-secondary hover:text-white transition-all duration-500 whitespace-nowrap"
             >
-              <span className="w-8 h-px bg-primary transition-all duration-500 group-hover:w-16 group-hover:bg-secondary" />
-              <span className="group-hover:text-secondary transition-colors duration-300">
-                All Projects
-              </span>
+              Explore Projects
             </Link>
           </AnimatedSection>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {featured.map((project, i) => (
-            <AnimatedSection
-              key={project.id}
-              animation="scale"
-              delay={i * 100}
+        <AnimatedSection animation="fade-up">
+          <p className="text-center font-serif text-2xl md:text-3xl text-primary mb-10 md:mb-12">
+            A Life Rooted in Green
+          </p>
+        </AnimatedSection>
+
+        <div className="relative flex items-stretch justify-center gap-3 md:gap-5">
+          <div className="hidden md:block w-[10%] overflow-hidden">
+            <img src={left.thumbnail} alt={left.name} className="w-full h-full object-cover opacity-50" />
+          </div>
+
+          <div className="relative flex-1 max-w-4xl aspect-video overflow-hidden">
+            <Link href={`/projects/${current.id}`}>
+              <img src={current.images[0]} alt={current.name} className="w-full h-full object-cover" />
+            </Link>
+
+            <button
+              onClick={prev}
+              aria-label="Previous"
+              className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-2xl text-white/90 hover:text-white transition-colors duration-300"
             >
-              <Link href={`/projects/${project.id}`}>
-                <div
-                  className="relative overflow-hidden group cursor-pointer"
-                  style={{ aspectRatio: i === 0 ? "16/10" : "4/3" }}
-                  onMouseEnter={() => setHovered(project.id)}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  <img
-                    src={project.thumbnail}
-                    alt={project.name}
-                    className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
-                  />
+              ‹
+            </button>
+            <button
+              onClick={next}
+              aria-label="Next"
+              className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-2xl text-white/90 hover:text-white transition-colors duration-300"
+            >
+              ›
+            </button>
+          </div>
 
-                  <div className="absolute inset-0 bg-linear-to-t from-primary via-primary/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+          <div className="hidden md:block w-[10%] overflow-hidden">
+            <img src={right.thumbnail} alt={right.name} className="w-full h-full object-cover opacity-50" />
+          </div>
+        </div>
 
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                    <span className="text-secondary text-xs tracking-widest uppercase mb-2">
-                      {project.category} · {project.status}
-                    </span>
-                    <h3 className="font-serif text-2xl text-white mb-1">{project.name}</h3>
-                    <p className="text-white/60 text-sm">{project.location}</p>
-
-                    <div
-                      className="flex items-center gap-3 mt-4 text-secondary text-xs tracking-widest uppercase transition-all duration-500"
-                      style={{
-                        opacity: hovered === project.id ? 1 : 0,
-                        transform: hovered === project.id ? "translateY(0)" : "translateY(12px)",
-                      }}
-                    >
-                      <span>View Project</span>
-                      <span>→</span>
-                    </div>
-                  </div>
-
-                  <div className="absolute top-6 right-6 bg-secondary/90 text-white text-xs px-3 py-1 tracking-widest uppercase">
-                    {project.year}
-                  </div>
-                </div>
-              </Link>
-            </AnimatedSection>
+        <div className="flex justify-center gap-2 mt-10">
+          {projects.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-px transition-all duration-500 ${
+                i === index ? "w-10 bg-secondary" : "w-4 bg-primary/20 hover:bg-primary/40"
+              }`}
+            />
           ))}
         </div>
 
