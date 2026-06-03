@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
@@ -7,115 +7,154 @@ const heroImages = [
   "/images/hero-1.jpg",
   "/images/hero-2.jpg",
   "/images/hero-3.jpg",
+  "/images/hero-4.jpg",
 ];
 
 export default function HeroSection() {
-  const [current, setCurrent] = useState(0);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (heroImages.length <= 1) return;
-    const timer = setInterval(() => {
-      setCurrent((i) => (i + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    const onScroll = () => {
+      const el = wrapRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const total = el.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      setProgress(total > 0 ? scrolled / total : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
+  const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+
+  const growth = ease(Math.min(progress / 0.8, 1));
+
+  const imgWidth = 44 + growth * 56;   
+  const imgHeight = 68 + growth * 32;  
+  const radius = 16 * (1 - growth);
+
+  const textOpacity = Math.max(1 - progress / 0.5, 0);
+
+  const activeIndex = Math.min(
+    Math.floor(progress * heroImages.length),
+    heroImages.length - 1
+  );
+
   return (
-    <section className="bg-light pt-32 md:pt-40 pb-20 md:pb-28">
-      <div className="max-w-7xl mx-auto px-5 md:px-6">
+    <>
+      <div ref={wrapRef} className="relative" style={{ height: "220vh" }}>
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-center">
-
-          <AnimatedSection animation="fade-right" className="md:col-span-3">
-            <h1 className="font-serif text-3xl md:text-4xl text-primary leading-tight">
-              European Standards
-              <br />
-              Bespoke Design
-              <br />
-              Built in Bangladesh.
-            </h1>
-          </AnimatedSection>
-
-          <AnimatedSection animation="scale" delay={100} className="md:col-span-5">
+          <div className="absolute inset-0 z-10 px-5 md:px-10 lg:px-16 pointer-events-none">
             <div
-              className="relative overflow-hidden group w-full"
-              style={{ aspectRatio: "3 / 4" }}
+              className="absolute left-5 md:left-6 top-[22%] max-w-[200px] md:max-w-xs"
+              style={{ opacity: textOpacity }}
+            >
+              <h1 className="font-serif text-2xl md:text-4xl text-primary leading-tight">
+                European Standards
+                <br />
+                Bespoke Design
+                <br />
+                Built in Bangladesh.
+              </h1>
+            </div>
+
+            <div
+              className="absolute right-5 md:right-6 top-[22%] max-w-[220px] md:max-w-xs"
+              style={{ opacity: textOpacity }}
+            >
+              <p className="text-primary/70 text-sm md:text-base leading-relaxed">
+                CDC Housing brings European standard planning with bespoke architectural
+                design to develop high quality residential and commercial spaces in
+                Bangladesh. We are creating modern homes built with quality, comfort and
+                long term value in mind.
+              </p>
+            </div>
+
+            <div
+              className="absolute left-5 md:left-6 bottom-[16%] max-w-[200px] md:max-w-xs"
+              style={{ opacity: textOpacity }}
+            >
+              <h2 className="font-serif text-2xl md:text-4xl text-secondary leading-tight">
+                Developing
+                <br />
+                Tomorrow&apos;s
+                <br />
+                Bangladesh
+              </h2>
+            </div>
+
+            <div
+              className="absolute right-5 md:right-6 bottom-[16%] max-w-[220px] md:max-w-xs"
+              style={{ opacity: textOpacity }}
+            >
+              <p className="text-primary/70 text-sm md:text-base leading-relaxed">
+                CDC Housing is committed to building more than properties. We create
+                thoughtfully designed spaces that improve everyday living, support modern
+                urban lifestyles, and contribute to a better future for Bangladesh.
+              </p>
+            </div>
+          </div>
+
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+            <div
+              className="relative overflow-hidden shadow-2xl"
+              style={{
+                width: `${imgWidth}vw`,
+                height: `${imgHeight}vh`,
+                borderRadius: `${radius}px`,
+              }}
             >
               {heroImages.map((src, i) => (
                 <img
                   key={src}
                   src={src}
                   alt="CDC Housing residential development"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-                  style={{ opacity: i === current ? 1 : 0 }}
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+                  style={{ opacity: i === activeIndex ? 1 : 0 }}
                 />
               ))}
 
-              {heroImages.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-                  {heroImages.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCurrent(i)}
-                      aria-label={`Show image ${i + 1}`}
-                      className={`h-px transition-all duration-500 ${
-                        i === current ? "w-8 bg-white" : "w-3 bg-white/50 hover:bg-white/80"
-                      }`}
-                    />
-                  ))}
-                </div>
-              )}
+              <div
+                className="absolute inset-0 flex items-end p-8 md:p-16"
+                style={{ opacity: growth }}
+              >
+                <h2 className="font-serif text-white text-3xl md:text-5xl leading-tight drop-shadow-lg">
+                  Building Tomorrow&apos;s Bangladesh
+                </h2>
+              </div>
             </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fade-left" delay={150} className="md:col-span-4">
-            <p className="text-primary/70 leading-relaxed">
-              CDC Housing brings European standard planning with bespoke architectural
-              design to develop high quality residential and commercial spaces in
-              Bangladesh. We are creating modern homes built with quality, comfort and
-              long term value in mind.
-            </p>
-          </AnimatedSection>
+          </div>
 
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 items-center mt-16 md:mt-20">
-          <AnimatedSection animation="fade-right" className="md:col-span-4">
-            <h2 className="font-serif text-3xl md:text-4xl text-secondary leading-tight">
-              Developing
-              <br />
-              Tomorrow&apos;s
-              <br />
-              Bangladesh
-            </h2>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fade-left" delay={100} className="md:col-span-8">
-            <p className="text-primary/70 leading-relaxed max-w-2xl">
-              CDC Housing is committed to building more than properties. We create
-              thoughtfully designed spaces that improve everyday living, support modern
-              urban lifestyles, and contribute to a better future for Bangladesh.
-            </p>
-          </AnimatedSection>
-        </div>
-
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mt-20 md:mt-28">
-          <AnimatedSection animation="fade-right">
-            <h2 className="font-serif text-3xl md:text-4xl text-primary">
-              Our Foundation for Building Excellence
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection animation="fade-left" delay={100}>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-3 border border-secondary text-secondary text-xs tracking-widest uppercase px-8 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500 whitespace-nowrap"
-            >
-              Get in Touch
-            </Link>
-          </AnimatedSection>
-        </div>
-
       </div>
-    </section>
+
+      <section className="bg-light py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-5 md:px-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+            <AnimatedSection animation="fade-right">
+              <h2 className="font-serif text-3xl md:text-4xl text-primary">
+                Our Foundation for Building Excellence
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-left" delay={100}>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 border border-secondary text-secondary text-xs tracking-widest uppercase px-8 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500 whitespace-nowrap"
+              >
+                Get in Touch
+              </Link>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
