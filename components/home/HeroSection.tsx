@@ -4,9 +4,6 @@ import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
 const heroImages = [
-  "/images/hero-1.jpg",
-  "/images/hero-2.jpg",
-  "/images/hero-3.jpg",
   "/images/hero-4.jpg",
 ];
 

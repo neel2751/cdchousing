@@ -7,23 +7,26 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-accent text-primary border-t border-primary/10">
       <div className="max-w-7xl mx-auto px-5 md:px-6 pt-16 md:pt-20 pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
 
           <div>
             <Image
-              src="/images/logo-white.svg"
+              src="/images/logo.png"
               alt="CDC Housing"
               width={300}
               height={120}
               className="h-14 w-auto object-contain"
             />
+            <p className="text-primary/50 text-sm leading-relaxed mt-5 max-w-xs">
+              European standard planning and bespoke design, building tomorrow&apos;s Bangladesh.
+            </p>
           </div>
 
           <div className="lg:col-span-2">
             <h3 className="uppercase tracking-widest text-secondary mb-4 text-xs">Office</h3>
-            <address className="not-italic text-white/50 text-sm leading-relaxed space-y-1">
+            <address className="not-italic text-primary/60 text-sm leading-relaxed space-y-1">
               <p>Ayub Height, House – 25</p>
               <p>Block – A, Avenue Road Bashundhara R/A</p>
               <p>Dhaka – 1229</p>
@@ -43,7 +46,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/50 text-sm hover:text-secondary transition-colors duration-300"
+                    className="text-primary/60 text-sm hover:text-secondary transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -64,7 +67,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={s.label}
-                    className="w-9 h-9 border border-white/20 flex items-center justify-center text-white/50 hover:border-secondary hover:text-secondary transition-all duration-300"
+                    className="w-9 h-9 border border-primary/20 flex items-center justify-center text-primary/50 hover:border-secondary hover:text-secondary hover:bg-white transition-all duration-300"
                   >
                     <Icon size={16} strokeWidth={1.5} />
                   </a>
@@ -76,9 +79,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-primary/10">
         <div className="max-w-7xl mx-auto px-5 md:px-6 py-5 text-center">
-          <p className="text-white/30 text-xs">
+          <p className="text-primary/40 text-xs">
             All Rights Reserved by CDC Housing Limited. © {currentYear}
           </p>
         </div>
