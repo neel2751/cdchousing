@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource-variable/google-sans-flex": "^5.2.3",
     "@tailwindcss/postcss": "^4.3.0",
     "clsx": "^2.1.1",
     "critters": "^0.0.23",

@@ -20,7 +20,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="group">
+        <div>
           <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">
             Full Name *
           </label>
@@ -105,7 +105,7 @@ export default function ContactForm() {
 
       {status === "success" && (
         <p className="text-green-700 text-sm">
-          Thank you! We'll get back to you within 24 hours.
+          Thank you! We&apos;ll get back to you within 24 hours.
         </p>
       )}
     </form>

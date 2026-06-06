@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
@@ -7,133 +7,202 @@ const heroImages = [
   "/images/hero-4.jpg",
 ];
 
+// start card size (portrait crop) -> grows to 100/100
+const SX0 = 0.34;
+const SY0 = 0.62;
+
 export default function HeroSection() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
+  const boxRef = useRef<HTMLDivElement>(null);      // scaled container
+  const innerRef = useRef<HTMLDivElement>(null);    // counter-scaled image holder
+  const captionRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  const target = useRef(0);
+  const current = useRef(0);
+  const raf = useRef<number>();
 
   useEffect(() => {
-    const onScroll = () => {
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+    const clamp = (v: number, a = 0, b = 1) => Math.min(Math.max(v, a), b);
+
+    const readScroll = () => {
       const el = wrapRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const total = el.offsetHeight - window.innerHeight;
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      setProgress(total > 0 ? scrolled / total : 0);
+      target.current = total > 0 ? scrolled / total : 0;
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+
+    const apply = (progress: number) => {
+      const growth = ease(Math.min(progress / 0.8, 1));
+
+      const sx = SX0 + growth * (1 - SX0);
+      const sy = SY0 + growth * (1 - SY0);
+      const radius = 18 * (1 - growth);
+
+      // side text fades + slides outward as the card grows over it
+      const textOpacity = 1 - clamp((growth - 0.05) / 0.5);
+      const slide = growth * 80; // px the text drifts outward
+      // caption fades in only at the very end
+      const captionOpacity = clamp((growth - 0.78) / 0.22);
+
+      if (boxRef.current) {
+        boxRef.current.style.transform = `scale(${sx}, ${sy})`;
+        boxRef.current.style.borderRadius = `${radius / sx}px / ${radius / sy}px`;
+      }
+      if (innerRef.current) {
+        innerRef.current.style.transform = `scale(${1 / sx}, ${1 / sy})`;
+      }
+      if (leftRef.current) {
+        leftRef.current.style.opacity = `${textOpacity}`;
+        leftRef.current.style.transform = `translateY(-50%) translateX(${-slide}px)`;
+      }
+      if (rightRef.current) {
+        rightRef.current.style.opacity = `${textOpacity}`;
+        rightRef.current.style.transform = `translateY(-50%) translateX(${slide}px)`;
+      }
+      if (captionRef.current) captionRef.current.style.opacity = `${captionOpacity}`;
+    };
+
+    const loop = () => {
+      current.current += (target.current - current.current) * 0.1;
+      if (Math.abs(target.current - current.current) < 0.0004) {
+        current.current = target.current;
+      }
+      apply(current.current);
+      raf.current = requestAnimationFrame(loop);
+    };
+
+    readScroll();
+    current.current = target.current;
+    apply(current.current);
+
+    window.addEventListener("scroll", readScroll, { passive: true });
+    window.addEventListener("resize", readScroll);
+    raf.current = requestAnimationFrame(loop);
+
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", readScroll);
+      window.removeEventListener("resize", readScroll);
+      if (raf.current) cancelAnimationFrame(raf.current);
     };
   }, []);
 
-  const ease = (t: number) => 1 - Math.pow(1 - t, 3);
-
-  const growth = ease(Math.min(progress / 0.8, 1));
-
-  const imgWidth = 44 + growth * 56;   
-  const imgHeight = 68 + growth * 32;  
-  const radius = 16 * (1 - growth);
-
-  const textOpacity = Math.max(1 - progress / 0.5, 0);
-
-  const activeIndex = Math.min(
-    Math.floor(progress * heroImages.length),
-    heroImages.length - 1
-  );
-
   return (
     <>
-      <div ref={wrapRef} className="relative" style={{ height: "220vh" }}>
+      <div ref={wrapRef} className="relative" style={{ height: "180vh" }}>
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
 
-          <div className="absolute inset-0 z-10 px-5 md:px-10 lg:px-16 pointer-events-none">
-            <div
-              className="absolute left-5 md:left-6 top-[22%] max-w-[200px] md:max-w-xs"
-              style={{ opacity: textOpacity }}
-            >
-              <h1 className="font-serif text-2xl md:text-4xl text-primary leading-tight">
-                European Standards
-                <br />
-                Bespoke Design
-                <br />
-                Built in Bangladesh.
-              </h1>
-            </div>
+          {/* LEFT text — vertically centered, slides left on scroll */}
+          <div
+            ref={leftRef}
+            className="absolute left-5 md:left-10 lg:left-16 top-1/2 z-10 max-w-[220px] md:max-w-sm pointer-events-none"
+            style={{ transform: "translateY(-50%)", willChange: "transform, opacity" }}
+          >
+            <h1 className="font-serif text-3xl md:text-5xl text-primary leading-tight">
+              European Standards
+              <br />
+              Bespoke Design
+              <br />
+              Built in Bangladesh.
+            </h1>
+          </div>
 
-            <div
-              className="absolute right-5 md:right-6 top-[22%] max-w-[220px] md:max-w-xs"
-              style={{ opacity: textOpacity }}
-            >
-              <p className="text-primary/70 text-sm md:text-base leading-relaxed">
-                CDC Housing brings European standard planning with bespoke architectural
-                design to develop high quality residential and commercial spaces in
-                Bangladesh. We are creating modern homes built with quality, comfort and
-                long term value in mind.
-              </p>
-            </div>
+          {/* RIGHT text — vertically centered, slides right on scroll */}
+          <div
+            ref={rightRef}
+            className="absolute right-5 md:right-10 lg:right-16 top-1/2 z-10 max-w-[220px] md:max-w-sm pointer-events-none"
+            style={{ transform: "translateY(-50%)", willChange: "transform, opacity" }}
+          >
+            <p className="text-primary/70 text-sm md:text-base leading-relaxed">
+              CDC Housing brings European standard planning with bespoke architectural
+              design to develop high quality residential and commercial spaces in
+              Bangladesh — modern homes built with quality, comfort and long term value
+              in mind.
+            </p>
+          </div>
 
+          {/* image stage — base size is the FINAL fullscreen size, scaled down */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-20 md:pt-24">
             <div
-              className="absolute left-5 md:left-6 bottom-[16%] max-w-[200px] md:max-w-xs"
-              style={{ opacity: textOpacity }}
+              ref={boxRef}
+              className="relative overflow-hidden shadow-2xl"
+              style={{
+                width: "100vw",
+                height: "100vh",
+                transform: `scale(${SX0}, ${SY0})`,
+                transformOrigin: "center center",
+                willChange: "transform",
+              }}
             >
-              <h2 className="font-serif text-2xl md:text-4xl text-secondary leading-tight">
-                Developing
-                <br />
-                Tomorrow&apos;s
-                <br />
-                Bangladesh
-              </h2>
-            </div>
-
-            <div
-              className="absolute right-5 md:right-6 bottom-[16%] max-w-[220px] md:max-w-xs"
-              style={{ opacity: textOpacity }}
-            >
-              <p className="text-primary/70 text-sm md:text-base leading-relaxed">
-                CDC Housing is committed to building more than properties. We create
-                thoughtfully designed spaces that improve everyday living, support modern
-                urban lifestyles, and contribute to a better future for Bangladesh.
-              </p>
+              <div
+                ref={innerRef}
+                className="absolute inset-0"
+                style={{
+                  transform: `scale(${1 / SX0}, ${1 / SY0})`,
+                  transformOrigin: "center center",
+                  willChange: "transform",
+                }}
+              >
+                {heroImages.map((src) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt="CDC Housing residential development"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-            <div
-              className="relative overflow-hidden shadow-2xl"
-              style={{
-                width: `${imgWidth}vw`,
-                height: `${imgHeight}vh`,
-                borderRadius: `${radius}px`,
-              }}
-            >
-              {heroImages.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt="CDC Housing residential development"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
-                  style={{ opacity: i === activeIndex ? 1 : 0 }}
-                />
-              ))}
-
-              <div
-                className="absolute inset-0 flex items-end p-8 md:p-16"
-                style={{ opacity: growth }}
-              >
-                <h2 className="font-serif text-white text-3xl md:text-5xl leading-tight drop-shadow-lg">
-                  Building Tomorrow&apos;s Bangladesh
-                </h2>
-              </div>
-            </div>
+          {/* caption fades in over the full-bleed image at the end */}
+          <div
+            ref={captionRef}
+            className="absolute inset-0 z-30 flex items-end p-8 md:p-16 pointer-events-none"
+            style={{ opacity: 0 }}
+          >
+            <h2 className="font-serif text-white text-3xl md:text-5xl leading-tight drop-shadow-lg">
+              Building Tomorrow&apos;s Bangladesh
+            </h2>
           </div>
 
         </div>
       </div>
 
-      <section className="bg-light py-20 md:py-28">
+      <section className="bg-light py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-5 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+            <AnimatedSection animation="fade-right" className="lg:col-span-6">
+              <h2 className="font-serif text-primary leading-[1.05] text-4xl md:text-6xl lg:text-7xl">
+                Developing 
+                <br />
+                Tomorrow's Bangladesh
+                <br />
+              </h2>
+            </AnimatedSection>
+
+            <AnimatedSection animation="fade-left" delay={150} className="lg:col-span-5 lg:col-start-8">
+              <p className="text-primary/70 text-base md:text-lg leading-relaxed">
+                CDC Housing is committed to building more than properties. We create thoughtfully designed spaces that improve everyday living,
+                support modern urban lifestyles, and contribute to a better future for Bangladesh.
+              </p>
+              <p className="text-primary/70 text-base md:text-lg leading-relaxed mt-6">
+                Where others see minor details, we see the small elements that come together
+                to create an extraordinary living experience — homes built with quality,
+                comfort and lasting value for the people of Bangladesh.
+              </p>
+            </AnimatedSection>
+
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-light py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-5 md:px-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
             <AnimatedSection animation="fade-right">

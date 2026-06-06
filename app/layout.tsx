@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/animations.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CursorFollower from "@/components/shared/CursorFollower";
-import LoadingScreen from "@/components/shared/LoadingScreen";
-import PageTransition from "@/components/shared/PageTransition";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  style: ["normal", "italic"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -25,11 +15,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en">
       <body>
-        <LoadingScreen />
         <CursorFollower />
-        <PageTransition />
         <Header />
         <main>{children}</main>
         <Footer />

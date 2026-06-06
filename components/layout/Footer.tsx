@@ -9,15 +9,15 @@ export default function Footer() {
   return (
     <footer className="bg-accent text-primary border-t border-primary/10">
       <div className="max-w-7xl mx-auto px-5 md:px-6 pt-16 md:pt-20 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 items-start">
 
-          <div>
+          <div className="flex flex-col">
             <Image
               src="/images/logo.png"
               alt="CDC Housing"
               width={300}
               height={120}
-              className="h-14 w-auto object-contain"
+              className="h-25 w-auto object-contain -mt-3"
             />
             <p className="text-primary/50 text-sm leading-relaxed mt-5 max-w-xs">
               European standard planning and bespoke design, building tomorrow&apos;s Bangladesh.

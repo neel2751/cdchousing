@@ -39,29 +39,38 @@ export default function LandownerForm() {
         <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">Land Information</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="form-field">
-            <label className="form-label">Category</label>
-            <select className="form-select" required defaultValue="">
+            <label className="form-label">Locality</label>
+            <input type="text" className="form-input" placeholder="Locality" />
+          </div>
+          <div className="form-field">
+            <label className="form-label">Address*</label>
+            <input type="text" className="form-input" placeholder="Address" required />
+          </div>
+          <div className="form-field">
+            <label className="form-label">Size Of The Land In Kathas*</label>
+            <input type="text" className="form-input" placeholder="Size of the land in kathas" required />
+          </div>
+          <div className="form-field">
+            <label className="form-label">Width Of The Road In Front (In Feet)*</label>
+            <input type="text" className="form-input" placeholder="Width of the road in front (in feet)" required />
+          </div>
+          <div className="form-field">
+            <label className="form-label">Select Category</label>
+            <select className="form-select" defaultValue="">
               <option value="" disabled>Select category</option>
-              <option>Freehold</option>
-              <option>Leasehold</option>
+              <option>Residential</option>
+              <option>Commercial</option>
+              <option>Mixed Use</option>
             </select>
           </div>
           <div className="form-field">
-            <label className="form-label">Land Size</label>
-            <input type="text" className="form-input" placeholder="e.g. 5 katha" />
-          </div>
-          <div className="form-field">
-            <label className="form-label">Location</label>
-            <input type="text" className="form-input" placeholder="Area / district" required />
-          </div>
-          <div className="form-field">
-            <label className="form-label">Road Width</label>
-            <input type="text" className="form-input" placeholder="e.g. 20 ft" />
+            <label className="form-label">Facing*</label>
+            <input type="text" className="form-input" placeholder="Facing" required />
           </div>
         </div>
 
         <div className="mt-8">
-          <label className="form-label">Attractive Features (if any)</label>
+          <label className="form-label">Attractive Features (If Any)</label>
           <div className="flex flex-wrap gap-3 mt-3">
             {features.map((f) => (
               <button
@@ -82,27 +91,19 @@ export default function LandownerForm() {
       </div>
 
       <div className="border-t border-primary/10 pt-12">
-        <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">Landowner Information</p>
+        <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">Landowners Information</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="form-field">
-            <label className="form-label">Full Name</label>
-            <input type="text" className="form-input" placeholder="Your name" required />
+            <label className="form-label">Name Of The Landowner*</label>
+            <input type="text" className="form-input" placeholder="Name of the landowner" required />
           </div>
           <div className="form-field">
-            <label className="form-label">Phone</label>
-            <input type="tel" className="form-input" placeholder="Your phone number" required />
+            <label className="form-label">Email ID*</label>
+            <input type="email" className="form-input" placeholder="Email ID" required />
           </div>
           <div className="form-field">
-            <label className="form-label">Email</label>
-            <input type="email" className="form-input" placeholder="Your email" />
-          </div>
-          <div className="form-field">
-            <label className="form-label">Address</label>
-            <input type="text" className="form-input" placeholder="Your address" />
-          </div>
-          <div className="form-field md:col-span-2">
-            <label className="form-label">Message</label>
-            <textarea rows={3} className="form-textarea" placeholder="Anything else we should know?" />
+            <label className="form-label">Contact Number*</label>
+            <input type="tel" className="form-input" placeholder="Contact number" required />
           </div>
         </div>
       </div>
@@ -111,7 +112,7 @@ export default function LandownerForm() {
         type="submit"
         className="group flex items-center justify-center gap-3 w-full sm:w-auto border border-secondary text-secondary text-xs tracking-widest uppercase px-10 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500"
       >
-        Submit Details
+        Submit
         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
       </button>
     </form>

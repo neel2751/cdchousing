@@ -41,24 +41,7 @@ const assurances = [
 export default function LandownerPage() {
   return (
     <>
-      <section className="relative h-[55vh] md:h-[65vh] overflow-hidden flex items-end">
-        <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800"
-          alt="CDC Housing development"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/55" />
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 md:px-6 pb-16 md:pb-20">
-          <BlockRevealTitle
-            text="LANDOWNER"
-            coverColor="#ffffff"
-            textColor="#ffffff"
-            className="font-serif text-5xl md:text-7xl tracking-tight"
-          />
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 bg-white pt-32 md:pt-40">
         <div className="max-w-7xl mx-auto px-5 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <BlockRevealTitle

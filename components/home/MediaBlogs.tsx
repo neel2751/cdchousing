@@ -4,28 +4,25 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 
 const posts = [
   {
-    date: "18 May 2026",
-    title: "Sobha Realty and Keeta Drone Sign Strategic MoU, la…",
-    excerpt: "Dubai, 18th May 2026: Sobha Realty, a leading global luxury real estate developer renowned for…",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800",
+    title: "CDC Housing Unveils New Bashundhara Residential Development",
+    excerpt: "Dhaka, 18 May 2026: CDC Housing announces its latest residential project, bringing European standard planning and bespoke design to Bashundhara R/A…",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800",
   },
   {
-    date: "17 Apr 2026",
-    title: "Emirates NBD and Sobha Realty partner to offer inte…",
-    excerpt: "Dubai, UAE, 6 April 2026: Emirates NBD, a leading banking group in the Middle East, North Africa…",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
+    title: "Partnering with Landowners to Build Tomorrow's Dhaka",
+    excerpt: "Dhaka, 17 April 2026: CDC Housing expands its landowner partnership programme, helping plot owners transform their land into high-quality developments…",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
   },
   {
-    date: "11 Apr 2026",
-    title: "'Sobha City': Abu Dhabi's New Nature-Led Waterfront…",
-    excerpt: "Abu Dhabi, 11 April 2026: Leading luxury property developer Sobha Realty has announced its entry…",
-    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800",
+    title: "Designing for Comfort: Our Approach to Modern Living",
+    excerpt: "Dhaka, 11 April 2026: A look at how CDC Housing blends contemporary architecture with everyday comfort to create homes built for long-term value…",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800",
   },
 ];
 
 export default function MediaBlogs() {
   return (
-    <section className="py-24 md:py-28 bg-light">
+    <section className="py-12 md:py-16 bg-light">
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <AnimatedSection animation="fade-up" className="flex justify-center mb-8">
@@ -33,19 +30,6 @@ export default function MediaBlogs() {
             Media &amp; Blogs
           </span>
         </AnimatedSection>
-
-        <div className="flex justify-end gap-3 mb-10">
-          <select className="border border-primary/20 text-primary/60 text-xs uppercase tracking-widest px-4 py-2 bg-transparent rounded-full">
-            <option>Month</option>
-            <option>January</option>
-            <option>February</option>
-          </select>
-          <select className="border border-primary/20 text-primary/60 text-xs uppercase tracking-widest px-4 py-2 bg-transparent rounded-full">
-            <option>Year</option>
-            <option>2026</option>
-            <option>2025</option>
-          </select>
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {posts.map((post, i) => (
@@ -59,7 +43,6 @@ export default function MediaBlogs() {
                   />
                 </div>
                 <div className="p-6">
-                  <p className="text-secondary text-xs tracking-widest uppercase mb-3">{post.date}</p>
                   <h3 className="font-serif text-lg text-primary leading-snug mb-3">{post.title}</h3>
                   <p className="text-primary/60 text-sm leading-relaxed mb-5">{post.excerpt}</p>
                   <Link

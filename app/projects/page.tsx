@@ -1,29 +1,30 @@
 import ProjectGrid from "@/components/projects/ProjectGrid";
-import AnimatedSection from "@/components/shared/AnimatedSection";
+import ProjectsFAQ from "@/components/projects/ProjectsFAQ";
+import ProjectsContactForm from "@/components/projects/ProjectsContactForm";
+import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Featured Projects" };
+export const metadata: Metadata = { title: "Projects" };
 
 export default function ProjectsPage() {
   return (
     <>
-      <div className="pt-36 md:pt-44 pb-12 md:pb-16 bg-light">
-        <div className="max-w-7xl mx-auto px-5 md:px-6 text-center">
-          <AnimatedSection animation="fade-up">
-            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Portfolio</p>
-            <h1 className="font-serif text-4xl md:text-6xl text-primary">Featured Projects</h1>
-            <div className="w-16 h-px bg-secondary mx-auto mt-6" />
-            <p className="text-primary/60 max-w-xl mx-auto mt-6 leading-relaxed">
-              European standard planning and bespoke architectural design — explore the
-              residences and commercial spaces shaping tomorrow&apos;s Bangladesh.
-            </p>
-          </AnimatedSection>
+      <section className="pt-32 md:pt-40 pb-24 md:pb-32 bg-light">
+        <div className="max-w-7xl mx-auto px-5 md:px-6">
+          <p className="text-xs tracking-widest uppercase text-primary/40 mb-5">
+            <Link href="/" className="hover:text-secondary transition-colors">Home</Link>
+            <span className="mx-1.5">/</span>
+            <span>Projects</span>
+          </p>
+          <h1 className="font-serif text-4xl md:text-6xl text-primary mb-10 md:mb-12">
+            All Projects
+          </h1>
+          <ProjectGrid />
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-6 pb-24 md:pb-32">
-        <ProjectGrid />
-      </div>
+      <ProjectsFAQ />
+      <ProjectsContactForm />
     </>
   );
 }

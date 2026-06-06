@@ -63,7 +63,7 @@ export default function Header() {
               width={300}
               height={120}
               priority
-              className="h-10 md:h-14 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
+              className="h-10 md:h-20 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
             />
           </Link>
 

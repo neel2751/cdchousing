@@ -5,41 +5,57 @@ const milestones = [
   {
     title: "Quality Construction",
     text: "Built with reliable materials, skilled workmanship, and careful attention to detail.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400",
+    image: "/images/foundation/Quality Construction.jpg",
   },
   {
     title: "Modern Architectural Design",
     text: "Bespoke designs that combine beauty, function, and comfortable living.",
-    image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1400",
+    image: "/images/foundation/Architectural Design.jpg",
   },
   {
     title: "Safety & Reliability",
     text: "Developments planned with structural safety, trust, and long-term durability in mind.",
-    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1400",
+    image: "/images/foundation/Safety And Reliability.jpg",
   },
   {
     title: "Comfortable Living",
     text: "Spaces designed to make everyday life easier, peaceful, and more enjoyable.",
-    image: "https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=1400",
+    image: "/images/foundation/Comfortable Living.jpg",
   },
   {
     title: "Long-Term Value",
     text: "Properties created to serve families, businesses, and future generations.",
-    image: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=1400",
+    image: "/images/foundation/Long-Term Value.jpg",
   },
   {
     title: "Sustainable Development",
     text: "Thoughtful planning that supports better urban living and responsible growth in Bangladesh.",
-    image: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=1400",
+    image: "/images/foundation/Sustainable Development.jpg",
   },
 ];
+
+// inline SVG shown if an image fails to load — no more grey boxes
+const FALLBACK =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='1000'>
+      <rect width='100%' height='100%' fill='#1f2d4a'/>
+      <rect x='0' y='0' width='100%' height='100%' fill='url(#g)'/>
+      <defs>
+        <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+          <stop offset='0' stop-color='#1f2d4a'/>
+          <stop offset='1' stop-color='#2a3a5c'/>
+        </linearGradient>
+      </defs>
+    </svg>`
+  );
 
 export default function FoundationTimeline() {
   const [active, setActive] = useState(1);
 
   return (
     <section className="bg-white">
-      <div className="flex h-[420px] md:h-[520px] w-full overflow-hidden">
+      <div className="flex h-[360px] md:h-[440px] w-full overflow-hidden">
         {milestones.map((m, i) => {
           const isActive = active === i;
           return (
@@ -53,6 +69,10 @@ export default function FoundationTimeline() {
               <img
                 src={m.image}
                 alt={m.title}
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  if (img.src !== FALLBACK) img.src = FALLBACK;
+                }}
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                 style={{
                   filter: isActive ? "grayscale(0)" : "grayscale(1)",

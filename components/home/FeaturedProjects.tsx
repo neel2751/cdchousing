@@ -16,7 +16,7 @@ export default function FeaturedProjects() {
   const right = projects[(index + 1) % total];
 
   return (
-    <section className="pt-20 md:pt-24 pb-24 md:pb-32 bg-white overflow-hidden">
+    <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <div className="flex justify-between items-center mb-12 md:mb-16">
@@ -33,12 +33,6 @@ export default function FeaturedProjects() {
           </AnimatedSection>
         </div>
 
-        <AnimatedSection animation="fade-up">
-          <p className="text-center font-serif text-2xl md:text-3xl text-primary mb-10 md:mb-12">
-            A Life Rooted in Green
-          </p>
-        </AnimatedSection>
-
         <div className="relative flex items-stretch justify-center gap-3 md:gap-5">
           <div className="hidden md:block w-[10%] overflow-hidden">
             <img src={left.thumbnail} alt={left.name} className="w-full h-full object-cover opacity-50" />
@@ -49,20 +43,30 @@ export default function FeaturedProjects() {
               <img src={current.images[0]} alt={current.name} className="w-full h-full object-cover" />
             </Link>
 
+            {/* arrows tucked inside the image edges */}
             <button
               onClick={prev}
               aria-label="Previous"
-              className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-2xl text-white/90 hover:text-white transition-colors duration-300"
+              className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-black/30 text-2xl text-white hover:bg-black/50 transition-colors duration-300"
             >
               ‹
             </button>
             <button
               onClick={next}
               aria-label="Next"
-              className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-2xl text-white/90 hover:text-white transition-colors duration-300"
+              className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-black/30 text-2xl text-white hover:bg-black/50 transition-colors duration-300"
             >
               ›
             </button>
+
+            {/* title overlaid at bottom center */}
+            <div className="absolute inset-x-0 bottom-0 pointer-events-none">
+              <div className="bg-gradient-to-t from-black/60 via-black/20 to-transparent pt-20 pb-6 md:pb-8">
+                <p className="text-center font-serif text-2xl md:text-3xl text-white drop-shadow-lg">
+                  A Life Rooted in Green
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="hidden md:block w-[10%] overflow-hidden">

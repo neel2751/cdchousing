@@ -9,7 +9,7 @@ const images = [
 
 export default function DesignPartner() {
   return (
-    <section className="py-24 md:py-28 bg-light">
+    <section className="py-12 md:py-16 bg-light">
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <AnimatedSection animation="fade-up" className="text-center mb-14">
