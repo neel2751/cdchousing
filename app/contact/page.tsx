@@ -8,22 +8,8 @@ export const metadata: Metadata = { title: "Contact Us" };
 export default function ContactPage() {
   return (
     <>
-      <div className="pt-24 md:pt-32 pb-10 md:pb-16 bg-primary">
-        <div className="max-w-7xl mx-auto px-4 xs:px-5 md:px-6">
-          <AnimatedSection animation="fade-up">
-            <p className="text-secondary uppercase tracking-[0.4em] mb-3"
-              style={{ fontSize: "clamp(0.6rem, 2vw, 0.75rem)" }}>
-              Reach Us
-            </p>
-            <h1 className="font-serif text-white" style={{ fontSize: "clamp(2.5rem, 8vw, 4rem)" }}>
-              Get in Touch
-            </h1>
-            <div className="w-12 md:w-16 h-px bg-secondary mt-4 md:mt-6" />
-          </AnimatedSection>
-        </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 xs:px-5 md:px-6 py-14 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 md:px-6 pt-28 md:pt-36 pb-14 md:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12">
 
           <AnimatedSection animation="fade-right" className="lg:col-span-6">
