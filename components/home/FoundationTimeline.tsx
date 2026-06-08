@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const milestones = [
   {
@@ -34,7 +34,6 @@ const milestones = [
   },
 ];
 
-// inline SVG shown if an image fails to load — no more grey boxes
 const FALLBACK =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(
@@ -52,27 +51,52 @@ const FALLBACK =
 
 export default function FoundationTimeline() {
   const [active, setActive] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.src !== FALLBACK) img.src = FALLBACK;
+  };
 
   return (
     <section className="bg-white">
-      <div className="flex h-[360px] md:h-[440px] w-full overflow-hidden">
+      <div
+        className={
+          isMobile
+            ? "flex flex-col w-full overflow-hidden"
+            : "flex h-[420px] md:h-[520px] w-full overflow-hidden"
+        }
+        style={isMobile ? { height: "auto" } : undefined}
+      >
         {milestones.map((m, i) => {
           const isActive = active === i;
           return (
             <button
               key={m.title}
               onClick={() => setActive(i)}
-              onMouseEnter={() => setActive(i)}
-              className="relative h-full overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] focus:outline-none"
-              style={{ flex: isActive ? "1 1 0%" : "0 0 auto", width: isActive ? "auto" : "clamp(80px, 12vw, 170px)" }}
+              onMouseEnter={() => !isMobile && setActive(i)}
+              className="relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] focus:outline-none w-full"
+              style={
+                isMobile
+                  ? { height: isActive ? "340px" : "64px" }
+                  : {
+                      height: "100%",
+                      flex: isActive ? "1 1 0%" : "0 0 auto",
+                      width: isActive ? "auto" : "clamp(80px, 12vw, 170px)",
+                    }
+              }
             >
               <img
                 src={m.image}
                 alt={m.title}
-                onError={(e) => {
-                  const img = e.currentTarget;
-                  if (img.src !== FALLBACK) img.src = FALLBACK;
-                }}
+                onError={onImgError}
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                 style={{
                   filter: isActive ? "grayscale(0)" : "grayscale(1)",
@@ -86,7 +110,7 @@ export default function FoundationTimeline() {
               />
 
               {!isActive && (
-                <span className="absolute inset-0 flex items-center justify-center font-serif text-xl md:text-3xl text-primary/70">
+                <span className="absolute inset-0 flex items-center justify-center font-serif text-lg md:text-3xl text-primary/70 px-4 text-center">
                   {m.title}
                 </span>
               )}
@@ -97,9 +121,9 @@ export default function FoundationTimeline() {
                   style={{ animation: "fadeUp 0.7s 0.15s cubic-bezier(0.16,1,0.3,1) both" }}
                 >
                   <h3 className="font-serif text-white leading-none">
-                    <span className="text-4xl md:text-6xl">{m.title}</span>
+                    <span className="text-2xl md:text-6xl">{m.title}</span>
                   </h3>
-                  <div className="w-12 h-px bg-secondary my-5" />
+                  <div className="w-12 h-px bg-secondary my-4 md:my-5" />
                   <p className="text-white/85 text-sm md:text-base leading-relaxed max-w-md">
                     {m.text}
                   </p>

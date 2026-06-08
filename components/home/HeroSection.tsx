@@ -7,14 +7,10 @@ const heroImages = [
   "/images/hero-4.jpg",
 ];
 
-// start card size (portrait crop) -> grows to 100/100
-const SX0 = 0.34;
-const SY0 = 0.62;
-
 export default function HeroSection() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const boxRef = useRef<HTMLDivElement>(null);      // scaled container
-  const innerRef = useRef<HTMLDivElement>(null);    // counter-scaled image holder
+  const boxRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const captionRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -22,10 +18,19 @@ export default function HeroSection() {
   const target = useRef(0);
   const current = useRef(0);
   const raf = useRef<number>();
+  // start crop size — set per screen size in the effect
+  const start = useRef({ sx: 0.34, sy: 0.62 });
 
   useEffect(() => {
     const ease = (t: number) => 1 - Math.pow(1 - t, 3);
     const clamp = (v: number, a = 0, b = 1) => Math.min(Math.max(v, a), b);
+
+    const isMobile = () => window.innerWidth < 768;
+
+    const setStart = () => {
+      // on mobile begin wider + shorter so the card never collides with text
+      start.current = isMobile() ? { sx: 0.72, sy: 0.42 } : { sx: 0.34, sy: 0.62 };
+    };
 
     const readScroll = () => {
       const el = wrapRef.current;
@@ -37,16 +42,16 @@ export default function HeroSection() {
     };
 
     const apply = (progress: number) => {
+      const { sx: SX0, sy: SY0 } = start.current;
       const growth = ease(Math.min(progress / 0.8, 1));
 
       const sx = SX0 + growth * (1 - SX0);
       const sy = SY0 + growth * (1 - SY0);
       const radius = 18 * (1 - growth);
 
-      // side text fades + slides outward as the card grows over it
       const textOpacity = 1 - clamp((growth - 0.05) / 0.5);
-      const slide = growth * 80; // px the text drifts outward
-      // caption fades in only at the very end
+      const slide = growth * (isMobile() ? 30 : 80);
+
       const captionOpacity = clamp((growth - 0.78) / 0.22);
 
       if (boxRef.current) {
@@ -58,11 +63,16 @@ export default function HeroSection() {
       }
       if (leftRef.current) {
         leftRef.current.style.opacity = `${textOpacity}`;
-        leftRef.current.style.transform = `translateY(-50%) translateX(${-slide}px)`;
+        // on mobile slide up instead of left
+        leftRef.current.style.transform = isMobile()
+          ? `translateY(${-slide}px)`
+          : `translateY(-50%) translateX(${-slide}px)`;
       }
       if (rightRef.current) {
         rightRef.current.style.opacity = `${textOpacity}`;
-        rightRef.current.style.transform = `translateY(-50%) translateX(${slide}px)`;
+        rightRef.current.style.transform = isMobile()
+          ? `translateY(${slide}px)`
+          : `translateY(-50%) translateX(${slide}px)`;
       }
       if (captionRef.current) captionRef.current.style.opacity = `${captionOpacity}`;
     };
@@ -76,33 +86,35 @@ export default function HeroSection() {
       raf.current = requestAnimationFrame(loop);
     };
 
+    setStart();
     readScroll();
     current.current = target.current;
     apply(current.current);
 
+    const onResize = () => { setStart(); readScroll(); };
     window.addEventListener("scroll", readScroll, { passive: true });
-    window.addEventListener("resize", readScroll);
+    window.addEventListener("resize", onResize);
     raf.current = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener("scroll", readScroll);
-      window.removeEventListener("resize", readScroll);
+      window.removeEventListener("resize", onResize);
       if (raf.current) cancelAnimationFrame(raf.current);
     };
   }, []);
 
   return (
     <>
-      <div ref={wrapRef} className="relative" style={{ height: "180vh" }}>
+      <div ref={wrapRef} className="relative" style={{ height: "200vh" }}>
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
 
-          {/* LEFT text — vertically centered, slides left on scroll */}
+          {/* LEFT/TOP text */}
           <div
             ref={leftRef}
-            className="absolute left-5 md:left-10 lg:left-16 top-1/2 z-10 max-w-[220px] md:max-w-sm pointer-events-none"
-            style={{ transform: "translateY(-50%)", willChange: "transform, opacity" }}
+            className="absolute left-5 md:left-10 lg:left-16 top-[18%] md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
+            style={{ willChange: "transform, opacity" }}
           >
-            <h1 className="font-serif text-3xl md:text-5xl text-primary leading-tight">
+            <h1 className="font-serif text-2xl md:text-5xl text-primary leading-tight">
               European Standards
               <br />
               Bespoke Design
@@ -111,13 +123,13 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          {/* RIGHT text — vertically centered, slides right on scroll */}
+          {/* RIGHT/BOTTOM text */}
           <div
             ref={rightRef}
-            className="absolute right-5 md:right-10 lg:right-16 top-1/2 z-10 max-w-[220px] md:max-w-sm pointer-events-none"
-            style={{ transform: "translateY(-50%)", willChange: "transform, opacity" }}
+            className="absolute right-5 md:right-10 lg:right-16 bottom-[14%] md:bottom-auto md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
+            style={{ willChange: "transform, opacity" }}
           >
-            <p className="text-primary/70 text-sm md:text-base leading-relaxed">
+            <p className="text-primary/70 text-xs md:text-base leading-relaxed">
               CDC Housing brings European standard planning with bespoke architectural
               design to develop high quality residential and commercial spaces in
               Bangladesh — modern homes built with quality, comfort and long term value
@@ -125,7 +137,7 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* image stage — base size is the FINAL fullscreen size, scaled down */}
+          {/* image stage */}
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-20 md:pt-24">
             <div
               ref={boxRef}
@@ -133,7 +145,7 @@ export default function HeroSection() {
               style={{
                 width: "100vw",
                 height: "100vh",
-                transform: `scale(${SX0}, ${SY0})`,
+                transform: "scale(0.34, 0.62)",
                 transformOrigin: "center center",
                 willChange: "transform",
               }}
@@ -142,7 +154,7 @@ export default function HeroSection() {
                 ref={innerRef}
                 className="absolute inset-0"
                 style={{
-                  transform: `scale(${1 / SX0}, ${1 / SY0})`,
+                  transform: "scale(2.94, 1.61)",
                   transformOrigin: "center center",
                   willChange: "transform",
                 }}
@@ -159,13 +171,12 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* caption fades in over the full-bleed image at the end */}
           <div
             ref={captionRef}
-            className="absolute inset-0 z-30 flex items-end p-8 md:p-16 pointer-events-none"
+            className="absolute inset-0 z-30 flex items-end p-6 md:p-16 pointer-events-none"
             style={{ opacity: 0 }}
           >
-            <h2 className="font-serif text-white text-3xl md:text-5xl leading-tight drop-shadow-lg">
+            <h2 className="font-serif text-white text-2xl md:text-5xl leading-tight drop-shadow-lg">
               Building Tomorrow&apos;s Bangladesh
             </h2>
           </div>
@@ -176,16 +187,13 @@ export default function HeroSection() {
       <section className="bg-light py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-5 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-
             <AnimatedSection animation="fade-right" className="lg:col-span-6">
               <h2 className="font-serif text-primary leading-[1.05] text-4xl md:text-6xl lg:text-7xl">
-                Developing 
+                Developing
                 <br />
-                Tomorrow's Bangladesh
-                <br />
+                Tomorrow&apos;s Bangladesh
               </h2>
             </AnimatedSection>
-
             <AnimatedSection animation="fade-left" delay={150} className="lg:col-span-5 lg:col-start-8">
               <p className="text-primary/70 text-base md:text-lg leading-relaxed">
                 CDC Housing is committed to building more than properties. We create thoughtfully designed spaces that improve everyday living,
@@ -197,7 +205,6 @@ export default function HeroSection() {
                 comfort and lasting value for the people of Bangladesh.
               </p>
             </AnimatedSection>
-
           </div>
         </div>
       </section>
