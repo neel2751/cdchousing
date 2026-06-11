@@ -144,9 +144,9 @@ html.lenis {
 .text-fluid-7xl  { font-size: clamp(2.8rem,  11vw,  5rem);      }
 .text-fluid-hero { font-size: clamp(2.8rem,  12vw,  7rem);      }
 
-.tracking-label  { letter-spacing: 0.3em;  }
-.tracking-wide   { letter-spacing: 0.15em; }
-.tracking-widest { letter-spacing: 0.4em;  }
+.tracking-label  { letter-spacing: 0.15em; }
+.tracking-wide   { letter-spacing: 0.08em; }
+.tracking-widest { letter-spacing: 0.18em; }
 
 .text-gradient {
   background:              linear-gradient(135deg, #c8a96e 0%, #e8c98e 50%, #c8a96e 100%);

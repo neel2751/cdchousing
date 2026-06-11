@@ -13,7 +13,7 @@ export default function DesignPartner() {
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <AnimatedSection animation="fade-up" className="text-center mb-14">
-          <p className="font-serif text-2xl md:text-3xl text-secondary italic">Our Design Partner</p>
+          <p className="font-serif text-2xl md:text-3xl text-secondary ">Our Design Partner</p>
           <p className="font-serif text-2xl md:text-3xl text-secondary mt-1">
             In collaboration with CUBEINSIDE,
           </p>

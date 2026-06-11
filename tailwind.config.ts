@@ -26,6 +26,11 @@ const config: Config = {
         sans: ["var(--font-inter)", "sans-serif"],
         serif: ["var(--font-playfair)", "serif"],
       },
+      letterSpacing: {
+        wide:   "0.08em",
+        wider:  "0.12em",
+        widest: "0.18em",
+      },
       spacing: {
         "safe-top":    "env(safe-area-inset-top)",
         "safe-bottom": "env(safe-area-inset-bottom)",

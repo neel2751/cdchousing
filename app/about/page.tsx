@@ -10,19 +10,10 @@ export const metadata: Metadata = { title: "About Us" };
 export default function AboutPage() {
   return (
     <>
-      {/* Intro hero */}
-      <div className="pt-32 pb-16 bg-primary">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection animation="fade-up">
-            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Who We Are</p>
-            <h1 className="font-serif text-6xl text-white">About CDC Housing</h1>
-            <div className="w-16 h-px bg-secondary mt-6" />
-          </AnimatedSection>
-        </div>
-      </div>
-
       {/* Scroll-activated story + timeline */}
-      <StorySection />
+      <div className="pt-28 md:pt-36">
+        <StorySection />
+      </div>
 
       {/* Editorial "what sets us apart" grid */}
       <WhyChooseSection />

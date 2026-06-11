@@ -176,7 +176,7 @@ export default function HeroSection() {
             className="absolute inset-0 z-30 flex items-end p-6 md:p-16 pointer-events-none"
             style={{ opacity: 0 }}
           >
-            <h2 className="font-serif text-white text-2xl md:text-5xl leading-tight drop-shadow-lg">
+            <h2 className="font-serif text-white text-xl md:text-3xl leading-tight drop-shadow-lg">
               Building Tomorrow&apos;s Bangladesh
             </h2>
           </div>

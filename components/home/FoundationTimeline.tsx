@@ -49,6 +49,9 @@ const FALLBACK =
     </svg>`
   );
 
+const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+const DUR = "900ms";
+
 export default function FoundationTimeline() {
   const [active, setActive] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
@@ -82,53 +85,77 @@ export default function FoundationTimeline() {
               key={m.title}
               onClick={() => setActive(i)}
               onMouseEnter={() => !isMobile && setActive(i)}
-              className="relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] focus:outline-none w-full"
-              style={
-                isMobile
+              className="relative overflow-hidden focus:outline-none w-full"
+              style={{
+                transition: `flex-grow ${DUR} ${EASE}, height ${DUR} ${EASE}`,
+                willChange: "flex-grow, height",
+                ...(isMobile
                   ? { height: isActive ? "340px" : "64px" }
                   : {
                       height: "100%",
-                      flex: isActive ? "1 1 0%" : "0 0 auto",
-                      width: isActive ? "auto" : "clamp(80px, 12vw, 170px)",
-                    }
-              }
+                      flexGrow: isActive ? 8 : 0,
+                      flexShrink: 1,
+                      flexBasis: "clamp(80px, 12vw, 170px)",
+                    }),
+              }}
             >
               <img
                 src={m.image}
                 alt={m.title}
                 onError={onImgError}
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
+                className="absolute inset-0 w-full h-full object-cover"
                 style={{
                   filter: isActive ? "grayscale(0)" : "grayscale(1)",
-                  opacity: isActive ? 1 : 0.25,
-                  transform: isActive ? "scale(1)" : "scale(1.05)",
+                  opacity: isActive ? 1 : 0.3,
+                  transform: isActive ? "scale(1)" : "scale(1.08)",
+                  transition: `transform ${DUR} ${EASE}, opacity ${DUR} ${EASE}, filter ${DUR} ${EASE}`,
+                  willChange: "transform, opacity, filter",
                 }}
               />
               <div
-                className="absolute inset-0 transition-colors duration-700"
-                style={{ background: isActive ? "rgba(26,26,26,0.35)" : "rgba(245,240,232,0.55)" }}
+                className="absolute inset-0"
+                style={{
+                  background: isActive ? "rgba(26,26,26,0.40)" : "rgba(245,240,232,0.55)",
+                  transition: `background ${DUR} ${EASE}`,
+                }}
               />
 
-              {!isActive && (
-                <span className="absolute inset-0 flex items-center justify-center font-serif text-lg md:text-3xl text-primary/70 px-4 text-center">
-                  {m.title}
-                </span>
-              )}
+              {/* inactive label — fades out smoothly */}
+              <span
+                className="absolute inset-0 flex items-center justify-center font-serif text-lg md:text-3xl text-primary/70 px-4 text-center"
+                style={{
+                  opacity: isActive ? 0 : 1,
+                  transition: `opacity ${isActive ? "300ms" : "600ms"} ${EASE} ${isActive ? "0ms" : "300ms"}`,
+                  pointerEvents: "none",
+                }}
+              >
+                {m.title}
+              </span>
 
-              {isActive && (
+              {/* active content — fades + lifts in smoothly */}
+              <div
+                className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 text-left max-w-xl"
+                style={{
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? "translateY(0)" : "translateY(18px)",
+                  transition: `opacity ${DUR} ${EASE} ${isActive ? "250ms" : "0ms"}, transform ${DUR} ${EASE} ${isActive ? "250ms" : "0ms"}`,
+                  pointerEvents: "none",
+                }}
+              >
+                <h3 className="font-serif text-white leading-none">
+                  <span className="text-2xl md:text-6xl">{m.title}</span>
+                </h3>
                 <div
-                  className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 text-left max-w-xl"
-                  style={{ animation: "fadeUp 0.7s 0.15s cubic-bezier(0.16,1,0.3,1) both" }}
-                >
-                  <h3 className="font-serif text-white leading-none">
-                    <span className="text-2xl md:text-6xl">{m.title}</span>
-                  </h3>
-                  <div className="w-12 h-px bg-secondary my-4 md:my-5" />
-                  <p className="text-white/85 text-sm md:text-base leading-relaxed max-w-md">
-                    {m.text}
-                  </p>
-                </div>
-              )}
+                  className="h-px bg-secondary my-4 md:my-5"
+                  style={{
+                    width: isActive ? "3rem" : "0rem",
+                    transition: `width ${DUR} ${EASE} ${isActive ? "400ms" : "0ms"}`,
+                  }}
+                />
+                <p className="text-white/85 text-sm md:text-base leading-relaxed max-w-md">
+                  {m.text}
+                </p>
+              </div>
             </button>
           );
         })}

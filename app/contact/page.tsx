@@ -15,7 +15,7 @@ export default function ContactPage() {
           <AnimatedSection animation="fade-right" className="lg:col-span-6">
             <h2 className="font-serif text-primary mb-8 md:mb-10"
               style={{ fontSize: "clamp(2rem, 6vw, 3rem)" }}>
-              Book a Free Consultation
+              Get in Touch
             </h2>
             <ContactForm />
           </AnimatedSection>
