@@ -43,7 +43,7 @@ export default function Header() {
       <header
         className={clsx(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-light/95 backdrop-blur-md border-b border-primary/10",
-          scrolled ? "shadow-sm py-3" : "py-4 md:py-5"
+          scrolled ? "shadow-sm py-1" : "py-1 md:py-1.5"
         )}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-6 grid grid-cols-2 lg:grid-cols-3 items-center">
@@ -63,7 +63,7 @@ export default function Header() {
               width={300}
               height={120}
               priority
-              className="h-10 md:h-20 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
+              className="h-12 md:h-16 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
             />
           </Link>
 
