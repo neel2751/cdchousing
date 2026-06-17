@@ -13,9 +13,10 @@ export const footerLinks = {
     { label: "Contact Us", href: "/contact" },
   ],
   legal: [
-    { label: "Cookies", href: "/cookies" },
+    { label: "Featured Projects", href: "/projects" },
+    { label: "Landowner", href: "/landowner" },
+    { label: "Contact Us", href: "/contact" },
     { label: "Privacy", href: "/privacy" },
-    { label: "Terms", href: "/terms" },
   ],
   social: [
     { label: "Facebook", href: "https://facebook.com", icon: "facebook" },

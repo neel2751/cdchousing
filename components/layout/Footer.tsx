@@ -43,6 +43,18 @@ export default function Footer() {
               >
                 contact@cdchousing.com
               </a>
+              <a
+                href="tel:+8801000000000"
+                className="block mt-3 hover:text-secondary transition-colors duration-300"
+              >
+                +880 1772-206985
+              </a>
+              <a
+                href="tel:+8801111111111"
+                className="block hover:text-secondary transition-colors duration-300"
+              >
+                +880 1716-776543
+              </a>
             </address>
           </div>
 
@@ -84,7 +96,6 @@ export default function Footer() {
 
         </div>
       </div>
-
       <div className="border-t border-primary/10">
         <div className="max-w-7xl mx-auto px-5 md:px-6 py-5 text-center">
           <p className="text-primary/40 text-xs">
