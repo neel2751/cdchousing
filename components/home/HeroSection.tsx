@@ -7,6 +7,8 @@ const heroImages = [
   "/images/hero-4.jpg",
 ];
 
+const PHASE1 = 0.35; 
+
 export default function HeroSection() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -18,7 +20,6 @@ export default function HeroSection() {
   const target = useRef(0);
   const current = useRef(0);
   const raf = useRef<number>();
-  // start crop size — set per screen size in the effect
   const start = useRef({ sx: 0.30, sy: 0.92 });
 
   useEffect(() => {
@@ -28,8 +29,7 @@ export default function HeroSection() {
     const isMobile = () => window.innerWidth < 768;
 
     const setStart = () => {
-      // on mobile begin wider + shorter so the card never collides with text
-        start.current = isMobile() ? { sx: 0.55, sy: 0.42 } : { sx: 0.30, sy: 0.92 };
+      start.current = isMobile() ? { sx: 0.55, sy: 0.42 } : { sx: 0.30, sy: 0.92 };
     };
 
     const readScroll = () => {
@@ -43,19 +43,24 @@ export default function HeroSection() {
 
     const apply = (progress: number) => {
       const { sx: SX0, sy: SY0 } = start.current;
-      const growth = ease(Math.min(progress / 0.8, 1));
 
-      const sx = SX0 + growth * (1 - SX0);
-      const sy = SY0 + growth * (1 - SY0);
-      const radius = 18 * (1 - growth);
+      const p1 = clamp(progress / PHASE1);              
+      const p2 = clamp((progress - PHASE1) / (1 - PHASE1)); 
+      const restGapVh = (1 - SY0) / 2;
+      const navbarPx = isMobile() ? 70 : 90;    
+      const travelUp = ease(p1) * (restGapVh * window.innerHeight + navbarPx);
 
-      const textOpacity = 1 - clamp((growth - 0.05) / 0.5);
-      const slide = growth * (isMobile() ? 30 : 80);
+      const grow = ease(Math.min(p2 / 0.9, 1));
+      const sx = SX0 + grow * (1 - SX0);
+      const sy = SY0 + grow * (1 - SY0);
+      const radius = 18 * (1 - grow);
 
-      const captionOpacity = clamp((growth - 0.78) / 0.22);
+      const textOpacity = 1 - clamp((progress - 0.05) / 0.4);
+      const slide = grow * (isMobile() ? 30 : 80);
+      const captionOpacity = clamp((grow - 0.78) / 0.22);
 
       if (boxRef.current) {
-        boxRef.current.style.transform = `scale(${sx}, ${sy})`;
+        boxRef.current.style.transform = `translateY(${-travelUp}px) scale(${sx}, ${sy})`;
         boxRef.current.style.borderRadius = `${radius / sx}px / ${radius / sy}px`;
       }
       if (innerRef.current) {
@@ -63,7 +68,6 @@ export default function HeroSection() {
       }
       if (leftRef.current) {
         leftRef.current.style.opacity = `${textOpacity}`;
-        // on mobile slide up instead of left
         leftRef.current.style.transform = isMobile()
           ? `translateY(${-slide}px)`
           : `translateY(-50%) translateX(${-slide}px)`;
@@ -108,7 +112,6 @@ export default function HeroSection() {
       <div ref={wrapRef} className="relative" style={{ height: "200vh" }}>
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
 
-          {/* LEFT/TOP text */}
           <div
             ref={leftRef}
             className="absolute left-5 md:left-10 lg:left-16 top-[18%] md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
@@ -123,7 +126,6 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          {/* RIGHT/BOTTOM text */}
           <div
             ref={rightRef}
             className="absolute right-5 md:right-10 lg:right-16 bottom-[14%] md:bottom-auto md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
@@ -137,8 +139,7 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* image stage */}
-          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-28 md:pt-36">
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-48 md:pt-56">
             <div
               ref={boxRef}
               className="relative overflow-hidden shadow-2xl"
