@@ -106,7 +106,7 @@ export default function ContactPage() {
       <div className="w-full">
         <div className="overflow-hidden border-t border-primary/10" style={{ aspectRatio: "21/9" }}>
           <iframe
-            src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=Bashundhara+R/A,Dhaka`}
+            src="https://maps.google.com/maps?q=23.8129168,90.4302452&z=17&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
