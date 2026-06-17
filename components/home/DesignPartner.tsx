@@ -1,10 +1,10 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
-const images = [
-  "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1000",
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1000",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000",
+const stadium = "https://cubeinsidebd.com/media/images/PICC-2.width-1200.jpg";
+const buildings = [
+  "https://cubeinsidebd.com/media/images/View_03.width-1200_dWhxIxo.jpg",
+  "https://cubeinsidebd.com/media/images/Corona_Camera005_0000_copy.width-1200.jpg",
+  "https://cubeinsidebd.com/media/images/2_yASENJ2.width-1200.jpg",
 ];
 
 export default function DesignPartner() {
@@ -13,7 +13,7 @@ export default function DesignPartner() {
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <AnimatedSection animation="fade-up" className="text-center mb-14">
-          <p className="font-serif text-2xl md:text-3xl text-secondary ">Our Design Partner</p>
+          <p className="font-serif text-2xl md:text-3xl text-secondary">Our Design Partner</p>
           <p className="font-serif text-2xl md:text-3xl text-secondary mt-1">
             In collaboration with CUBEINSIDE,
           </p>
@@ -22,24 +22,28 @@ export default function DesignPartner() {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <AnimatedSection animation="fade-right" className="flex flex-col gap-4">
-            <div className="overflow-hidden aspect-video">
-              <img src={images[0]} alt="" className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105" />
-            </div>
-            <div className="overflow-hidden aspect-4/3">
-              <img src={images[1]} alt="" className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105" />
-            </div>
-          </AnimatedSection>
+        <AnimatedSection animation="fade-up">
+          <div className="overflow-hidden mb-4" style={{ aspectRatio: "16 / 9" }}>
+            <img
+              src={stadium}
+              alt=""
+              className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105"
+            />
+          </div>
+        </AnimatedSection>
 
-          <AnimatedSection animation="fade-left" delay={100} className="flex flex-col gap-4">
-            <div className="overflow-hidden aspect-4/3">
-              <img src={images[2]} alt="" className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105" />
-            </div>
-            <div className="overflow-hidden aspect-video">
-              <img src={images[3]} alt="" className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105" />
-            </div>
-          </AnimatedSection>
+        <div className="grid grid-cols-3 gap-4">
+          {buildings.map((src, i) => (
+            <AnimatedSection key={i} animation="fade-up" delay={i * 100}>
+              <div className="overflow-hidden" style={{ aspectRatio: "3 / 4" }}>
+                <img
+                  src={src}
+                  alt=""
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105"
+                />
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
 
       </div>

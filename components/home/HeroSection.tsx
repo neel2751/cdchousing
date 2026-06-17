@@ -19,7 +19,7 @@ export default function HeroSection() {
   const current = useRef(0);
   const raf = useRef<number>();
   // start crop size — set per screen size in the effect
-  const start = useRef({ sx: 0.34, sy: 0.62 });
+  const start = useRef({ sx: 0.30, sy: 0.92 });
 
   useEffect(() => {
     const ease = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -29,7 +29,7 @@ export default function HeroSection() {
 
     const setStart = () => {
       // on mobile begin wider + shorter so the card never collides with text
-      start.current = isMobile() ? { sx: 0.72, sy: 0.42 } : { sx: 0.34, sy: 0.62 };
+        start.current = isMobile() ? { sx: 0.55, sy: 0.42 } : { sx: 0.30, sy: 0.92 };
     };
 
     const readScroll = () => {
@@ -114,7 +114,7 @@ export default function HeroSection() {
             className="absolute left-5 md:left-10 lg:left-16 top-[18%] md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
             style={{ willChange: "transform, opacity" }}
           >
-            <h1 className="font-serif text-2xl md:text-5xl text-primary leading-tight">
+            <h1 className="font-serif text-2xl md:text-5xl text-primary leading-tight font-normal">
               European Standards
               <br />
               Bespoke Design
@@ -138,14 +138,14 @@ export default function HeroSection() {
           </div>
 
           {/* image stage */}
-          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-20 md:pt-24">
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-28 md:pt-36">
             <div
               ref={boxRef}
               className="relative overflow-hidden shadow-2xl"
               style={{
                 width: "100vw",
                 height: "100vh",
-                transform: "scale(0.34, 0.62)",
+                transform: "scale(0.30, 0.92)",
                 transformOrigin: "center center",
                 willChange: "transform",
               }}
@@ -154,7 +154,7 @@ export default function HeroSection() {
                 ref={innerRef}
                 className="absolute inset-0"
                 style={{
-                  transform: "scale(2.94, 1.61)",
+                  transform: "scale(3.333, 1.087)",
                   transformOrigin: "center center",
                   willChange: "transform",
                 }}
@@ -164,7 +164,7 @@ export default function HeroSection() {
                     key={src}
                     src={src}
                     alt="CDC Housing residential development"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                 ))}
               </div>
@@ -188,10 +188,12 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto px-5 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <AnimatedSection animation="fade-right" className="lg:col-span-6">
-              <h2 className="font-serif text-primary leading-[1.05] text-4xl md:text-6xl lg:text-7xl">
+              <h2 className="font-display text-secondary leading-[1.05] text-4xl md:text-6xl lg:text-7xl">
                 Developing
                 <br />
-                Tomorrow&apos;s Bangladesh
+                Tomorrow&apos;s
+                <br />
+                Bangladesh
               </h2>
             </AnimatedSection>
             <AnimatedSection animation="fade-left" delay={150} className="lg:col-span-5 lg:col-start-8">
@@ -220,7 +222,7 @@ export default function HeroSection() {
             <AnimatedSection animation="fade-left" delay={100}>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 border border-secondary text-secondary text-xs tracking-widest uppercase px-8 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500 whitespace-nowrap"
+                className="inline-flex items-center gap-3 border border-secondary text-secondary text-sm tracking-widest px-8 py-4 rounded-full hover:bg-secondary hover:text-white transition-all duration-500 whitespace-nowrap"
               >
                 Get in Touch
               </Link>

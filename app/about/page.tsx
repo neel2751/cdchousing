@@ -42,13 +42,13 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-3 bg-secondary text-white text-xs tracking-widest uppercase px-10 py-4 rounded-full hover:bg-secondary-dark transition-all duration-500"
+                className="inline-flex items-center justify-center gap-3 bg-secondary text-white text-xs tracking-widest px-10 py-4 rounded-full hover:bg-secondary-dark transition-all duration-500"
               >
                 Get in Touch
               </Link>
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center gap-3 border border-primary/20 text-primary text-xs tracking-widest uppercase px-10 py-4 rounded-full hover:border-secondary hover:text-secondary transition-all duration-500"
+                className="inline-flex items-center justify-center gap-3 border border-primary/20 text-primary text-xs tracking-widest px-10 py-4 rounded-full hover:border-secondary hover:text-secondary transition-all duration-500"
               >
                 View Projects
               </Link>

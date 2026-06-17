@@ -1,10 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { footerLinks } from "@/data/navigation";
-import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const social: Record<string, { Icon: React.ElementType; color: string }> = {
+    facebook:  { Icon: FaFacebook,  color: "#1877F2" },
+    linkedin:  { Icon: FaLinkedin,  color: "#0A66C2" },
+    instagram: { Icon: FaInstagram, color: "#E4405F" },
+    youtube:   { Icon: FaYoutube,   color: "#FF0000" },
+  };
 
   return (
     <footer className="bg-accent text-primary border-t border-primary/10">
@@ -25,7 +32,7 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="uppercase tracking-widest text-secondary mb-4 text-xs">Office</h3>
+            <h3 className="tracking-widest text-secondary mb-4 text-base">Office</h3>
             <address className="not-italic text-primary/60 text-sm leading-relaxed space-y-1">
               <p>Ayub Height, House – 25</p>
               <p>Block – A, Avenue Road Bashundhara R/A</p>
@@ -40,7 +47,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="uppercase tracking-widest text-secondary mb-4 text-xs">Legal &amp; Press</h3>
+            <h3 className="tracking-widest text-secondary mb-4 text-base">Legal &amp; Press</h3>
             <ul className="space-y-2.5">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
@@ -55,11 +62,9 @@ export default function Footer() {
             </ul>
             <div className="flex gap-3 mt-6">
               {footerLinks.social.map((s) => {
-                const Icon =
-                  s.icon === "facebook" ? Facebook
-                  : s.icon === "linkedin" ? Linkedin
-                  : s.icon === "instagram" ? Instagram
-                  : Youtube;
+                const entry = social[s.icon];
+                if (!entry) return null;
+                const { Icon, color } = entry;
                 return (
                   <a
                     key={s.label}
@@ -67,9 +72,10 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={s.label}
-                    className="w-9 h-9 border border-primary/20 flex items-center justify-center text-primary/50 hover:border-secondary hover:text-secondary hover:bg-white transition-all duration-300"
+                    className="transition-transform duration-300 hover:scale-110"
+                    style={{ color }}
                   >
-                    <Icon size={16} strokeWidth={1.5} />
+                    <Icon size={28} />
                   </a>
                 );
               })}

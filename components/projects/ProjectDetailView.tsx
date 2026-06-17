@@ -65,7 +65,7 @@ export default function ProjectDetailView({ project }: Props) {
     <>
       {/* TITLE HEADER */}
       <div className="bg-white pt-28 md:pt-36 pb-8 md:pb-10">
-        <div className="max-w-7xl mx-auto px-5 md:px-6 text-center">
+        <div className="max-w-6xl mx-auto px-5 md:px-6 text-left">
           <p className="text-primary/40 text-xs tracking-widest uppercase mb-4">
             <Link href="/" className="hover:text-secondary transition-colors">Home</Link>
             <span className="mx-1.5">/</span>
@@ -87,15 +87,15 @@ export default function ProjectDetailView({ project }: Props) {
 
       {/* PROJECT OVERVIEW */}
       <section className="bg-white py-16 md:py-24">
-        <div className="max-w-3xl mx-auto px-5 md:px-6">
+        <div className="max-w-6xl mx-auto px-5 md:px-6">
           <div className="flex items-center justify-between gap-6 mb-8">
             <h2 className="font-serif text-3xl md:text-4xl text-primary">Project Overview</h2>
-            <Link
+            {/* <Link
               href="/contact"
               className="hidden sm:inline-flex items-center gap-3 border border-primary text-primary text-xs tracking-widest uppercase px-6 py-3 hover:bg-primary hover:text-white transition-all duration-500 whitespace-nowrap"
             >
               Download Brochure →
-            </Link>
+            </Link> */}
           </div>
           <p className="text-primary/50 text-sm mb-5">{project.name} by CDC Housing</p>
           <p className="text-primary/70 text-sm md:text-base leading-relaxed mb-5">
@@ -110,23 +110,8 @@ export default function ProjectDetailView({ project }: Props) {
       {/* GALLERY */}
       <section className="bg-light py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-5 md:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-10">
+          <div className="mb-10">
             <h2 className="font-serif text-3xl md:text-4xl text-primary">Gallery</h2>
-            <div className="flex flex-wrap gap-2">
-              {galleryTabs.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setGalleryTab(t)}
-                  className={`text-xs tracking-widest uppercase px-5 py-2.5 border transition-all duration-300 ${
-                    galleryTab === t
-                      ? "bg-primary text-white border-primary"
-                      : "bg-transparent text-primary/60 border-primary/20 hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -153,17 +138,14 @@ export default function ProjectDetailView({ project }: Props) {
         </div>
       </section>
 
-      {/* EXPLORE — feature image */}
-      <section className="bg-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-5 md:px-6">
-          <h2 className="font-serif text-3xl md:text-4xl text-primary mb-10">Explore {project.name}</h2>
-          <div className="overflow-hidden" style={{ aspectRatio: "21/9" }}>
-            <img
-              src={project.images[1] ?? project.images[0]}
-              alt={project.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
+      {/* EXPLORE — full-width feature image */}
+      <section className="bg-white">
+        <div className="w-full overflow-hidden" style={{ height: "100vh" }}>
+          <img
+            src={project.images[1] ?? project.images[0]}
+            alt={project.name}
+            className="w-full h-full object-cover"
+          />
         </div>
       </section>
 
@@ -225,7 +207,7 @@ export default function ProjectDetailView({ project }: Props) {
               href={`https://www.google.com/maps/search/${encodeURIComponent(project.location)}`}
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-3 border border-primary text-primary text-xs tracking-widest uppercase px-6 py-3 hover:bg-primary hover:text-white transition-all duration-500 whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-3 border border-primary text-primary text-xs tracking-widest px-6 py-3 hover:bg-primary hover:text-white transition-all duration-500 whitespace-nowrap"
             >
               See Location On Maps →
             </a>

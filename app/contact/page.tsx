@@ -1,6 +1,7 @@
 import ContactForm from "@/components/contact/ContactForm";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import Link from "next/link";
+import { FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Contact Us" };
@@ -56,16 +57,23 @@ export default function ContactPage() {
           <AnimatedSection animation="fade-left" className="lg:col-span-3 space-y-12">
             <div>
               <h3 className="font-serif text-xl text-primary mb-5">Follow Us</h3>
-              <div className="flex flex-wrap gap-3">
-                {["Instagram", "Facebook", "LinkedIn", "YouTube"].map((s) => (
+              <div className="flex flex-wrap gap-4">
+                {[
+                  { Icon: FaInstagram, color: "#E4405F", label: "Instagram", href: "#" },
+                  { Icon: FaFacebook,  color: "#1877F2", label: "Facebook",  href: "#" },
+                  { Icon: FaLinkedin,  color: "#0A66C2", label: "LinkedIn",  href: "#" },
+                  { Icon: FaYoutube,   color: "#FF0000", label: "YouTube",   href: "#" },
+                ].map(({ Icon, color, label, href }) => (
                   <a
-                    key={s}
-                    href="#"
+                    key={label}
+                    href={href}
                     target="_blank"
                     rel="noreferrer"
-                    className="border border-primary/20 text-primary/60 text-xs tracking-widest uppercase px-4 py-2 hover:border-secondary hover:text-secondary transition-all duration-300"
+                    aria-label={label}
+                    style={{ color }}
+                    className="transition-transform duration-300 hover:scale-110"
                   >
-                    {s}
+                    <Icon size={28} />
                   </a>
                 ))}
               </div>

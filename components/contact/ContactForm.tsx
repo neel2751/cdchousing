@@ -31,7 +31,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
-            placeholder="Rajesh Mehta"
+            placeholder="Full Name"
           />
         </div>
         <div>
@@ -45,7 +45,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
-            placeholder="rajesh@email.com"
+            placeholder="Email Address"
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function ContactForm() {
             value={formData.phone}
             onChange={handleChange}
             className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
-            placeholder="+91 98765 43210"
+            placeholder="Phone Number"
           />
         </div>
         <div>

@@ -26,7 +26,7 @@ export default function MediaBlogs() {
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
         <AnimatedSection animation="fade-up" className="flex justify-center mb-8">
-          <span className="inline-block border border-secondary text-secondary text-xs tracking-widest uppercase px-6 py-2.5 rounded-full">
+          <span className="inline-block border border-secondary text-secondary text-xs tracking-widest px-6 py-2.5 rounded-full">
             Media &amp; Blogs
           </span>
         </AnimatedSection>

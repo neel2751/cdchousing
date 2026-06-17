@@ -31,7 +31,7 @@ export default function Header() {
 
   const linkClass = (href: string) =>
     clsx(
-      "relative text-sm tracking-wide transition-colors duration-300",
+      "relative text-xl tracking-wide transition-colors duration-300",
       "after:absolute after:bottom-[-4px] after:left-0 after:h-px after:bg-secondary after:transition-all after:duration-500",
       pathname === href
         ? "text-secondary after:w-full"
