@@ -138,17 +138,6 @@ export default function ProjectDetailView({ project }: Props) {
         </div>
       </section>
 
-      {/* EXPLORE — full-width feature image */}
-      <section className="bg-white">
-        <div className="w-full overflow-hidden" style={{ height: "100vh" }}>
-          <img
-            src={project.images[1] ?? project.images[0]}
-            alt={project.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </section>
-
       {/* PREMIUM AMENITIES */}
       <section className="bg-light py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-5 md:px-6">

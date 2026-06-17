@@ -29,7 +29,7 @@ export default function HeroSection() {
     const isMobile = () => window.innerWidth < 768;
 
     const setStart = () => {
-      start.current = isMobile() ? { sx: 0.60, sy: 0.55 } : { sx: 0.30, sy: 0.78 };
+      start.current = isMobile() ? { sx: 0.68, sy: 0.63 } : { sx: 0.35, sy: 0.90 };
     };
 
     const readScroll = () => {
@@ -167,7 +167,7 @@ export default function HeroSection() {
               style={{
                 width: "100vw",
                 height: "100vh",
-                transform: "scale(0.30, 0.78)",
+                transform: "scale(0.35, 0.90)",
                 transformOrigin: "center center",
                 willChange: "transform",
               }}
@@ -176,7 +176,7 @@ export default function HeroSection() {
                 ref={innerRef}
                 className="absolute inset-0"
                 style={{
-                  transform: "scale(3.333, 1.282)",
+                  transform: "scale(2.857, 1.111)",
                   transformOrigin: "center center",
                   willChange: "transform",
                 }}
