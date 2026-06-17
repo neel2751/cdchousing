@@ -7,7 +7,7 @@ const heroImages = [
   "/images/hero-4.jpg",
 ];
 
-const PHASE1 = 0.35; 
+const PHASE1 = 0.50; // first half of scroll = move up; rest = expand
 
 export default function HeroSection() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ export default function HeroSection() {
   const target = useRef(0);
   const current = useRef(0);
   const raf = useRef<number>();
-  const start = useRef({ sx: 0.30, sy: 0.92 });
+  const start = useRef({ sx: 0.30, sy: 0.60 });
 
   useEffect(() => {
     const ease = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -29,7 +29,7 @@ export default function HeroSection() {
     const isMobile = () => window.innerWidth < 768;
 
     const setStart = () => {
-      start.current = isMobile() ? { sx: 0.55, sy: 0.42 } : { sx: 0.30, sy: 0.92 };
+      start.current = isMobile() ? { sx: 0.60, sy: 0.55 } : { sx: 0.30, sy: 0.78 };
     };
 
     const readScroll = () => {
@@ -43,24 +43,44 @@ export default function HeroSection() {
 
     const apply = (progress: number) => {
       const { sx: SX0, sy: SY0 } = start.current;
+      const H = window.innerHeight;
 
-      const p1 = clamp(progress / PHASE1);              
-      const p2 = clamp((progress - PHASE1) / (1 - PHASE1)); 
-      const restGapVh = (1 - SY0) / 2;
-      const navbarPx = isMobile() ? 70 : 90;    
-      const travelUp = ease(p1) * (restGapVh * window.innerHeight + navbarPx);
+      const navEl = document.querySelector("header");
+      const navH = navEl ? navEl.getBoundingClientRect().height : 80;
 
-      const grow = ease(Math.min(p2 / 0.9, 1));
-      const sx = SX0 + grow * (1 - SX0);
-      const sy = SY0 + grow * (1 - SY0);
+      // white space below navbar at rest / how far the card travels up
+      const gap = isMobile() ? 70 : 120;
+
+      // translateY where the card's TOP edge just touches the navbar (phase 1 end)
+      const Y1 = navH - (1 - SY0) * H / 2;
+
+      const inPhase1 = progress < PHASE1;
+      const p1 = clamp(progress / PHASE1);
+      const p2 = clamp((progress - PHASE1) / (1 - PHASE1));
+
+      let sx: number, sy: number, Y: number, grow: number;
+
+      if (inPhase1) {
+        // PHASE 1 — scale LOCKED at rest, image slides straight up by `gap`
+        sx = SX0;
+        sy = SY0;
+        grow = 0;
+        Y = Y1 + gap * (1 - ease(p1));
+      } else {
+        // PHASE 2 — image expands to full screen
+        grow = ease(Math.min(p2 / 0.9, 1));
+        sx = SX0 + grow * (1 - SX0);
+        sy = SY0 + grow * (1 - SY0);
+        Y = Y1 * (1 - ease(p2));
+      }
+
       const radius = 18 * (1 - grow);
-
-      const textOpacity = 1 - clamp((progress - 0.05) / 0.4);
+      const textOpacity = inPhase1 ? 1 : 1 - clamp(p2 / 0.5);
       const slide = grow * (isMobile() ? 30 : 80);
       const captionOpacity = clamp((grow - 0.78) / 0.22);
 
       if (boxRef.current) {
-        boxRef.current.style.transform = `translateY(${-travelUp}px) scale(${sx}, ${sy})`;
+        boxRef.current.style.transform = `translateY(${Y}px) scale(${sx}, ${sy})`;
         boxRef.current.style.borderRadius = `${radius / sx}px / ${radius / sy}px`;
       }
       if (innerRef.current) {
@@ -139,14 +159,15 @@ export default function HeroSection() {
             </p>
           </div>
 
-          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none pt-48 md:pt-56">
+          {/* image stage — no pt padding; rest gap handled in JS */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
             <div
               ref={boxRef}
               className="relative overflow-hidden shadow-2xl"
               style={{
                 width: "100vw",
                 height: "100vh",
-                transform: "scale(0.30, 0.92)",
+                transform: "scale(0.30, 0.78)",
                 transformOrigin: "center center",
                 willChange: "transform",
               }}
@@ -155,7 +176,7 @@ export default function HeroSection() {
                 ref={innerRef}
                 className="absolute inset-0"
                 style={{
-                  transform: "scale(3.333, 1.087)",
+                  transform: "scale(3.333, 1.282)",
                   transformOrigin: "center center",
                   willChange: "transform",
                 }}

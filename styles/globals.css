@@ -144,9 +144,9 @@ html.lenis {
 .text-fluid-7xl  { font-size: clamp(2.8rem,  11vw,  5rem);      }
 .text-fluid-hero { font-size: clamp(2.8rem,  12vw,  7rem);      }
 
-.tracking-label  { letter-spacing: 0.15em; }
-.tracking-wide   { letter-spacing: 0.08em; }
-.tracking-widest { letter-spacing: 0.18em; }
+.tracking-label  { letter-spacing: 0.08em; }
+.tracking-wide   { letter-spacing: 0.03em; }
+.tracking-widest { letter-spacing: 0.10em; }
 
 .font-display {
   font-family: 'Playfair Display', serif;

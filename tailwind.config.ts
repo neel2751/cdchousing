@@ -27,9 +27,9 @@ const config: Config = {
         serif: ["var(--font-playfair)", "serif"],
       },
       letterSpacing: {
-        wide:   "0.08em",
-        wider:  "0.12em",
-        widest: "0.18em",
+        wide:   "0.03em",
+        wider:  "0.06em",
+        widest: "0.10em",
       },
       spacing: {
         "safe-top":    "env(safe-area-inset-top)",
