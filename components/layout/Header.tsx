@@ -31,7 +31,7 @@ export default function Header() {
 
   const linkClass = (href: string) =>
     clsx(
-      "relative text-xl tracking-wide transition-colors duration-300",
+      "relative text-lg tracking-normal transition-colors duration-300",
       "after:absolute after:bottom-[-4px] after:left-0 after:h-px after:bg-secondary after:transition-all after:duration-500",
       pathname === href
         ? "text-secondary after:w-full"
@@ -63,7 +63,7 @@ export default function Header() {
               width={300}
               height={120}
               priority
-              className="h-12 md:h-16 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
+              className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
             />
           </Link>
 

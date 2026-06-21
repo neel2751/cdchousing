@@ -1,7 +1,6 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import StorySection from "@/components/about/Storysection";
 import WhyChooseSection from "@/components/about/Whychoosesection";
-import StatisticsSection from "@/components/about/StatisticsSection";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -17,9 +16,6 @@ export default function AboutPage() {
 
       {/* Editorial "what sets us apart" grid */}
       <WhyChooseSection />
-
-      {/* Impact counters */}
-      <StatisticsSection />
 
       {/* Closing CTA */}
       <section className="bg-light py-28 md:py-36 px-6">

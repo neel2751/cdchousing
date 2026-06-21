@@ -26,8 +26,14 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div>
                 <p className="text-secondary text-xs tracking-widest uppercase mb-1.5">Phone / WhatsApp</p>
-                <a href="tel:+8801000000000" className="text-primary/70 text-sm hover:text-secondary transition-colors duration-300">
+                <a href="tel:+8801000000000" className="block text-primary/70 text-sm hover:text-secondary transition-colors duration-300">
                   +880 1000 000000
+                </a>
+                <a href="tel:+880 1772-206985" className="block text-primary/70 text-sm hover:text-secondary transition-colors duration-300 mt-1">
+                  +880 1772 206985
+                </a>
+                <a href="tel: +880 1716-776543" className="block text-primary/70 text-sm hover:text-secondary transition-colors duration-300 mt-1">
+                  +880 1716-776543
                 </a>
               </div>
               <div>
@@ -106,10 +112,11 @@ export default function ContactPage() {
       <div className="w-full">
         <div className="overflow-hidden border-t border-primary/10" style={{ aspectRatio: "21/9" }}>
           <iframe
-            src="https://maps.google.com/maps?q=23.8129168,90.4302452&z=17&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.5181270696803!2d90.4266296!3d23.7645572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7bd979cf899%3A0x8d88c19c6627f7f8!2sCDC%20Housing%20Ltd!5e0!3m2!1sen!2suk!4v1781713761003!5m2!1sen!2suk"
             width="100%"
             height="100%"
             style={{ border: 0 }}
+            allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="CDC Housing Office Location"

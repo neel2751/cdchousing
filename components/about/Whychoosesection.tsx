@@ -11,7 +11,7 @@ const reasons = [
   {
     number: "02",
     title: "On-Time Delivery",
-    desc: "30 years, zero delays. Our track record of timely possession is our most prized achievement and your greatest assurance.",
+    desc: "Our track record of timely possession is our most prized achievement and your greatest assurance.",
     icon: "◎",
   },
   {
@@ -29,7 +29,7 @@ const reasons = [
   {
     number: "05",
     title: "Sustainable Design",
-    desc: "All CDC projects are designed with environmental responsibility — energy efficiency, green spaces, and sustainable materials.",
+    desc: "All CDC housing projects are designed with environmental responsibility — energy efficiency, green spaces, and sustainable materials.",
     icon: "◐",
   },
   {

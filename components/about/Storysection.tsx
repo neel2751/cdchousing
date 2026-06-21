@@ -2,11 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const milestones = [
-  { year: "1995", title: "Founded", desc: "CDC Housing was established in Dhaka with a single vision — to redefine quality living across Bangladesh." },
-  { year: "2002", title: "First Landmark", desc: "Delivered our first large-scale residential complex with 300 units, setting a new benchmark for the region." },
-  { year: "2010", title: "Expansion", desc: "Expanded operations beyond Dhaka — becoming a developer trusted nationwide." },
-  { year: "2018", title: "Luxury Segment", desc: "Entered the ultra-luxury market with award-winning projects that earned national recognition." },
-  { year: "2023", title: "5,000 Homes", desc: "Crossed the milestone of 5,000 families housed — a legacy built on trust, quality, and commitment." },
+  { year: "2018", title: "Our Foundation", desc: "CDC was established in the United Kingdom in 2018. The company was founded with a clear vision of creating stunning living spaces built to British standards. Today, CDC Housing operates as a key component of CDC's broader global expansion." },
+  { year: "2025", title: "Strategic Expansion", desc: "During our 2025 expansion phase, CDC Housing successfully grew its operations by collaborating with cubeinside as a dedicated design partner." },
+  { year: "2026", title: "A New Benchmark for Bangladesh", desc: "In 2026, we proudly started our first large-scale residential project in Dhaka. Our goal with this development is to create a completely new benchmark of living in Bangladesh. With a strong focus on the luxury segment, our residential builds utilize environment-friendly luxury materials to craft highly aesthetic spaces for your home." },
+  { year: "2018", title: "Luxury Segment", desc: "In our residential builds, we use environment-friendly, luxury materials to craft highly aesthetic environments for your space." },
 ];
 
 export default function StorySection() {
@@ -76,8 +75,8 @@ export default function StorySection() {
           >
             <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Our Story</p>
             <h2 className="font-serif text-5xl md:text-6xl text-primary leading-tight">
-              Three Decades of<br />
-              <span className="italic text-secondary">Building Dreams</span>
+              নির্মাণে নির্ভরতা<br />
+              <span className="italic text-secondary">ডিজাইনে আধুনিকতা</span>
             </h2>
           </div>
           <div
@@ -88,13 +87,9 @@ export default function StorySection() {
             }}
           >
             <p className="text-primary/50 text-base leading-relaxed mb-6">
-              CDC Housing began with a simple belief — every family deserves a home built with
-              integrity, craftsmanship, and care. Over three decades, that belief has never wavered.
+              CDC Housing is redefining the real estate landscape in Bangladesh. Our foundation is built on an unwavering commitment to bringing European standard planning to our local communities. Through bespoke architectural design, we specialize in developing high-quality residential and commercial spaces that meet the rigorous demands of modern living.
             </p>
-            <p className="text-primary/40 text-sm leading-relaxed">
-              From a modest office in Dhaka to a developer trusted by thousands of families across
-              Bangladesh, our story is one of quiet determination and relentless quality.
-            </p>
+            
           </div>
         </div>
 
@@ -106,7 +101,7 @@ export default function StorySection() {
           }`}
         >
           <img
-            src="/images/about-banner.jpg"
+            src="/images/dhaka-skyline.jpg"
             alt="CDC Housing headquarters"
             className="w-full h-full object-cover"
           />

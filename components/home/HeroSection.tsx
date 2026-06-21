@@ -102,8 +102,8 @@ export default function HeroSection() {
     };
 
     const loop = () => {
-      current.current += (target.current - current.current) * 0.1;
-      if (Math.abs(target.current - current.current) < 0.0004) {
+      current.current += (target.current - current.current) * 0.06;
+      if (Math.abs(target.current - current.current) < 0.0002) {
         current.current = target.current;
       }
       apply(current.current);
@@ -129,7 +129,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <div ref={wrapRef} className="relative" style={{ height: "200vh" }}>
+      <div ref={wrapRef} className="relative" style={{ height: "300vh" }}>
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
 
           <div
