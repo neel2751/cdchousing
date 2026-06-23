@@ -110,7 +110,7 @@ export const projects: Project[] = [
     features: ["Corporate Headquarters", "Modern Workspace", "Client Lounge", "Design Studio", "Central Location"],
     area: "—",
     units: "Office Building",
-    status: "completed",
+    status: "ongoing",
     year: "2024",
   },
 ];

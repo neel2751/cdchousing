@@ -118,16 +118,16 @@ export default function StorySection() {
           {/* Sticky giant year (desktop) */}
           <div className="hidden md:block">
             <div className="sticky top-32">
-              <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">Milestones</p>
+              <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-8">The CDC Housing Journey</p>
+              <h3 className="font-serif text-5xl text-secondary mb-2">
+                {milestones[activeIndex].title}
+              </h3>
               <span
                 key={milestones[activeIndex].year}
-                className="block font-serif text-[7rem] leading-none text-primary animate-[fadeIn_0.5s_ease]"
+                className="block font-serif text-[5rem] leading-none text-primary animate-[fadeIn_0.5s_ease]"
               >
                 {milestones[activeIndex].year}
               </span>
-              <h3 className="font-serif text-3xl text-secondary mt-2">
-                {milestones[activeIndex].title}
-              </h3>
               <div className="w-16 h-px bg-secondary mt-8" />
               <p className="text-primary/40 text-sm mt-3 tracking-widest">
                 {String(activeIndex + 1).padStart(2, "0")} / {String(milestones.length).padStart(2, "0")}

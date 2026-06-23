@@ -26,9 +26,6 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div>
                 <p className="text-secondary text-xs tracking-widest uppercase mb-1.5">Phone / WhatsApp</p>
-                <a href="tel:+8801000000000" className="block text-primary/70 text-sm hover:text-secondary transition-colors duration-300">
-                  +880 1000 000000
-                </a>
                 <a href="tel:+880 1772-206985" className="block text-primary/70 text-sm hover:text-secondary transition-colors duration-300 mt-1">
                   +880 1772 206985
                 </a>
