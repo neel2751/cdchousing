@@ -29,7 +29,8 @@ export default function HeroSection() {
     const isMobile = () => window.innerWidth < 768;
 
     const setStart = () => {
-      start.current = isMobile() ? { sx: 0.68, sy: 0.63 } : { sx: 0.35, sy: 0.90 };
+      // mobile: narrow portrait card so text sits clear in the corners
+      start.current = isMobile() ? { sx: 0.55, sy: 0.50 } : { sx: 0.35, sy: 0.90 };
     };
 
     const readScroll = () => {
@@ -48,10 +49,7 @@ export default function HeroSection() {
       const navEl = document.querySelector("header");
       const navH = navEl ? navEl.getBoundingClientRect().height : 80;
 
-      // white space below navbar at rest / how far the card travels up
-      const gap = isMobile() ? 70 : 120;
-
-      // translateY where the card's TOP edge just touches the navbar (phase 1 end)
+      const gap = isMobile() ? 60 : 120;
       const Y1 = navH - (1 - SY0) * H / 2;
 
       const inPhase1 = progress < PHASE1;
@@ -61,13 +59,11 @@ export default function HeroSection() {
       let sx: number, sy: number, Y: number, grow: number;
 
       if (inPhase1) {
-        // PHASE 1 — scale LOCKED at rest, image slides straight up by `gap`
         sx = SX0;
         sy = SY0;
         grow = 0;
         Y = Y1 + gap * (1 - ease(p1));
       } else {
-        // PHASE 2 — image expands to full screen
         grow = ease(Math.min(p2 / 0.9, 1));
         sx = SX0 + grow * (1 - SX0);
         sy = SY0 + grow * (1 - SY0);
@@ -76,7 +72,7 @@ export default function HeroSection() {
 
       const radius = 18 * (1 - grow);
       const textOpacity = inPhase1 ? 1 : 1 - clamp(p2 / 0.5);
-      const slide = grow * (isMobile() ? 30 : 80);
+      const slide = grow * (isMobile() ? 40 : 80);
       const captionOpacity = clamp((grow - 0.78) / 0.22);
 
       if (boxRef.current) {
@@ -88,12 +84,14 @@ export default function HeroSection() {
       }
       if (leftRef.current) {
         leftRef.current.style.opacity = `${textOpacity}`;
+        // mobile: top-left text slides up; desktop: left-center slides left
         leftRef.current.style.transform = isMobile()
           ? `translateY(${-slide}px)`
           : `translateY(-50%) translateX(${-slide}px)`;
       }
       if (rightRef.current) {
         rightRef.current.style.opacity = `${textOpacity}`;
+        // mobile: bottom-right text slides down; desktop: right-center slides right
         rightRef.current.style.transform = isMobile()
           ? `translateY(${slide}px)`
           : `translateY(-50%) translateX(${slide}px)`;
@@ -132,12 +130,13 @@ export default function HeroSection() {
       <div ref={wrapRef} className="relative" style={{ height: "300vh" }}>
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
 
+          {/* HEADING — top-left corner on mobile, left-center on desktop */}
           <div
             ref={leftRef}
-            className="absolute left-5 md:left-10 lg:left-16 top-[18%] md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
+            className="absolute left-4 right-[38%] md:right-auto md:left-10 lg:left-16 top-24 md:top-1/2 z-30 md:max-w-sm pointer-events-none text-left"
             style={{ willChange: "transform, opacity" }}
           >
-            <h1 className="font-serif text-2xl md:text-5xl text-primary leading-tight font-normal">
+            <h1 className="font-serif text-[19px] md:text-5xl text-primary leading-tight font-normal">
               European Standards
               <br />
               Bespoke Design
@@ -146,12 +145,13 @@ export default function HeroSection() {
             </h1>
           </div>
 
+          {/* PARAGRAPH — bottom-right corner on mobile, right-center on desktop */}
           <div
             ref={rightRef}
-            className="absolute right-5 md:right-10 lg:right-16 bottom-[14%] md:bottom-auto md:top-1/2 z-10 max-w-[260px] md:max-w-sm pointer-events-none"
+            className="absolute right-4 left-[34%] md:left-auto md:right-10 lg:right-16 bottom-[8%] md:bottom-auto md:top-1/2 z-30 md:max-w-sm pointer-events-none text-right md:text-left"
             style={{ willChange: "transform, opacity" }}
           >
-            <p className="text-primary/70 text-xs md:text-base leading-relaxed">
+            <p className="text-primary/70 text-[11px] md:text-base leading-relaxed">
               CDC Housing brings European standard planning with bespoke architectural
               design to develop high quality residential and commercial spaces in
               Bangladesh — modern homes built with quality, comfort and long term value
@@ -159,7 +159,7 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* image stage — no pt padding; rest gap handled in JS */}
+          {/* image stage */}
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
             <div
               ref={boxRef}
