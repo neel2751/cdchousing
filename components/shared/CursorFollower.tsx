@@ -28,14 +28,19 @@ export default function CursorFollower() {
   return (
     <div
       ref={cursorDotRef}
-      className="fixed pointer-events-none z-[9998] flex items-center justify-center font-serif font-bold text-secondary leading-none select-none"
+      className="fixed pointer-events-none z-[9998] flex items-center justify-center select-none"
       style={{
-        fontSize: isHovering ? "32px" : "26px",
         transform: `translate(-50%, -50%) scale(${isClicking ? 0.8 : 1})`,
-        transition: "transform 0.1s ease, font-size 0.3s ease",
+        transition: "transform 0.1s ease, width 0.3s ease, height 0.3s ease",
+        width:  isHovering ? "48px" : "36px",
+        height: isHovering ? "48px" : "36px",
       }}
     >
-      C
+      <img
+        src="/images/cursor.png"
+        alt=""
+        className="w-full h-full object-contain"
+      />
     </div>
   );
 }

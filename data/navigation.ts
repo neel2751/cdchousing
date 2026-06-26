@@ -1,7 +1,7 @@
 export const navItems = [
   { label: "Brand Story", href: "/about" },
   { label: "Featured Projects", href: "/projects" },
-  { label: "Landowner", href: "/landowner" },
+  { label: "NRB", href: "/nrb" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -15,6 +15,7 @@ export const footerLinks = {
   legal: [
     { label: "Featured Projects", href: "/projects" },
     { label: "Landowner", href: "/landowner" },
+    { label: "NRB", href: "/nrb" },
     { label: "Contact Us", href: "/contact" },
     { label: "Privacy", href: "/privacy" },
   ],

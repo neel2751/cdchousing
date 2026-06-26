@@ -5,7 +5,7 @@ const milestones = [
   { year: "2018", title: "Our Foundation", desc: "CDC was established in the United Kingdom in 2018. The company was founded with a clear vision of creating stunning living spaces built to British standards. Today, CDC Housing operates as a key component of CDC's broader global expansion." },
   { year: "2025", title: "Strategic Expansion", desc: "During our 2025 expansion phase, CDC Housing successfully grew its operations by collaborating with cubeinside as a dedicated design partner." },
   { year: "2026", title: "A New Benchmark for Bangladesh", desc: "In 2026, we proudly started our first large-scale residential project in Dhaka. Our goal with this development is to create a completely new benchmark of living in Bangladesh. With a strong focus on the luxury segment, our residential builds utilize environment-friendly luxury materials to craft highly aesthetic spaces for your home." },
-  { year: "2018", title: "Luxury Segment", desc: "In our residential builds, we use environment-friendly, luxury materials to craft highly aesthetic environments for your space." },
+  { year: "2026", title: "Luxury Segment", desc: "In our residential builds, we use environment-friendly, luxury materials to craft highly aesthetic environments for your space." },
 ];
 
 export default function StorySection() {
@@ -124,7 +124,7 @@ export default function StorySection() {
               </h3>
               <span
                 key={milestones[activeIndex].year}
-                className="block font-serif text-[5rem] leading-none text-primary animate-[fadeIn_0.5s_ease]"
+                className="block font-serif text-[3rem] leading-none text-primary animate-[fadeIn_0.5s_ease]"
               >
                 {milestones[activeIndex].year}
               </span>
@@ -147,7 +147,7 @@ export default function StorySection() {
                   activeIndex === i ? "opacity-100 translate-x-0" : "opacity-30 md:translate-x-2"
                 }`}
               >
-                <span className="md:hidden block font-serif text-6xl text-primary/10 leading-none mb-2">
+                <span className="md:hidden block font-serif text-3xl text-primary/10 leading-none mb-2">
                   {m.year}
                 </span>
                 <h3 className="font-serif text-2xl text-primary mb-3">{m.title}</h3>
