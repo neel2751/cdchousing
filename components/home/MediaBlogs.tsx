@@ -1,23 +1,14 @@
-"use client";
-import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
-const posts = [
-  {
-    title: "CDC Housing Unveils New Bashundhara Residential Development",
-    excerpt: "Dhaka, 18 May 2026: CDC Housing announces its latest residential project, bringing European standard planning and bespoke design to Bashundhara R/A…",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800",
-  },
-  {
-    title: "Partnering with Landowners to Build Tomorrow's Dhaka",
-    excerpt: "Dhaka, 17 April 2026: CDC Housing expands its landowner partnership programme, helping plot owners transform their land into high-quality developments…",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
-  },
-  {
-    title: "Designing for Comfort: Our Approach to Modern Living",
-    excerpt: "Dhaka, 11 April 2026: A look at how CDC Housing blends contemporary architecture with everyday comfort to create homes built for long-term value…",
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800",
-  },
+const youtubeVideos = [
+  "BYP6AfIQgx4",
+  "XIILIoV_-RY",
+  "b08h_VyWR8k",
+];
+
+const facebookReels = [
+  "https://www.facebook.com/reel/884553967429357",
+  "https://www.facebook.com/reel/4308361572820594",
 ];
 
 export default function MediaBlogs() {
@@ -31,28 +22,39 @@ export default function MediaBlogs() {
           </span>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post, i) => (
-            <AnimatedSection key={i} animation="scale" delay={i * 100}>
-              <article className="bg-white shadow-sm hover:shadow-lg transition-shadow duration-500 group">
-                <div className="overflow-hidden aspect-video">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
-                  />
+        {/* YouTube videos */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {youtubeVideos.map((id, i) => (
+            <AnimatedSection key={id} animation="scale" delay={i * 100}>
+              <div className="relative w-full overflow-hidden rounded-lg shadow-sm" style={{ aspectRatio: "16/9" }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src={`https://www.youtube.com/embed/${id}?rel=0`}
+                  title={`CDC Housing video ${i + 1}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* Facebook reels */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {facebookReels.map((url, i) => (
+            <AnimatedSection key={url} animation="scale" delay={i * 100}>
+              <a
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between bg-white shadow-sm hover:shadow-lg transition-shadow duration-500 p-6 rounded-lg"
+              >
+                <div>
+                  <p className="text-secondary text-xs tracking-widest uppercase mb-2">Facebook Reel</p>
+                  <h3 className="font-serif text-lg text-primary">Watch on Facebook</h3>
                 </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-lg text-primary leading-snug mb-3">{post.title}</h3>
-                  <p className="text-primary/60 text-sm leading-relaxed mb-5">{post.excerpt}</p>
-                  <Link
-                    href="/projects"
-                    className="text-xs tracking-widest uppercase text-secondary hover:text-secondary/70 transition-colors duration-300"
-                  >
-                    Read More
-                  </Link>
-                </div>
-              </article>
+                <span className="text-secondary text-xl transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
             </AnimatedSection>
           ))}
         </div>

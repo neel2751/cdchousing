@@ -16,6 +16,7 @@ export const footerLinks = {
     { label: "Featured Projects", href: "/projects" },
     { label: "Landowner", href: "/landowner" },
     { label: "NRB", href: "/nrb" },
+    { label: "Media", href: "/media" },
     { label: "Contact Us", href: "/contact" },
     { label: "Privacy", href: "/privacy" },
   ],

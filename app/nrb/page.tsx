@@ -43,7 +43,7 @@ const trust = [
 ];
 
 export default function NrbPage() {
-  const rotatingPlaces = ["Europe", "The UK", "The UAE", "Saudi Arabia", "Italy", "Germany"];
+  const rotatingPlaces = ["United Kingdom", "Middle East", "Europe", "America", "Spain", "Italy", "Saudi Arabia", "UAE"];
   const [placeIndex, setPlaceIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -65,7 +65,7 @@ export default function NrbPage() {
         {/* background image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero image.png"
+            src="/images/Area-View-CDC-Housing.jpg"
             alt="Luxury home in Bangladesh"
             className="w-full h-full object-cover"
           />
@@ -84,10 +84,10 @@ export default function NrbPage() {
             </div>
             <h1 className="font-serif text-white leading-[1.1] mb-6" style={{ fontSize: "clamp(2.6rem, 5vw, 4.25rem)" }}>
               Luxury living in Bangladesh<br />
-              <span className="italic text-secondary">crafted to your vision</span><br />
+              <span className="text-secondary">crafted to your vision</span><br />
               from{" "}
               <span
-                className="italic text-secondary inline-block"
+                className="text-secondary inline-block"
                 style={{
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(12px)",
@@ -114,15 +114,15 @@ export default function NrbPage() {
 
           <AnimatedSection animation="fade-left" delay={150}>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-xl p-6">
+              <div className="bg-primary/40 backdrop-blur-md border border-white/20 rounded-xl p-6">
                 <h3 className="font-serif text-4xl text-secondary mb-1">25+</h3>
                 <p className="text-white/65 text-sm">Completed projects delivered to proud homeowners</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-xl p-6">
+              <div className="bg-primary/40 backdrop-blur-md border border-white/20 rounded-xl p-6">
                 <h3 className="font-serif text-4xl text-secondary mb-1">100%</h3>
                 <p className="text-white/65 text-sm">Remote management — build without being in Bangladesh</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-secondary/20 rounded-xl p-6 col-span-2">
+              <div className="bg-primary/40 backdrop-blur-md border border-white/20 rounded-xl p-6 col-span-2">
                 <p className="text-white/55 text-xs uppercase tracking-widest mb-3">Serving NRBs in</p>
                 <div className="flex flex-wrap gap-2.5">
                   {["United Kingdom", "UAE", "Saudi Arabia", "Italy", "Germany", "+ more"].map((c) => (
@@ -137,25 +137,13 @@ export default function NrbPage() {
         </div>
       </section>
 
-      {/* TRUST BAR */}
-      <div className="bg-accent border-y border-primary/10 py-6 px-5 md:px-6">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-x-12 gap-y-4">
-          {trust.map((t) => (
-            <p key={t.strong} className="text-primary/60 text-sm">
-              <span className="text-primary font-semibold">{t.strong}</span> {t.rest}
-            </p>
-          ))}
-        </div>
-      </div>
-
       {/* WHY CDC */}
       <section className="bg-light py-20 md:py-28 px-5 md:px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <AnimatedSection animation="fade-right">
             <p className="text-secondary text-xs tracking-widest uppercase mb-3.5">Why CDC Housing</p>
             <h2 className="font-serif text-primary leading-tight mb-5" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
-              Your home in Bangladesh,<br />
-              <span className="italic text-secondary">built with your trust.</span>
+              Design &amp; Build your dream home in Bangladesh with <span className="text-secondary">CDC Housing</span>
             </h2>
             <div className="w-12 h-0.5 bg-secondary mb-6" />
             <p className="text-primary/60 text-base leading-relaxed mb-4">
@@ -170,13 +158,14 @@ export default function NrbPage() {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-left" delay={150}>
-            <div className="grid grid-cols-2 gap-4">
-              {whyCards.map((c) => (
-                <div key={c.title} className="group bg-accent border border-primary/10 rounded-lg p-7 hover:border-secondary hover:shadow-xl transition-all duration-300">
-                  <h4 className="font-serif text-lg text-primary mb-2">{c.title}</h4>
-                  <p className="text-primary/55 text-sm leading-relaxed">{c.desc}</p>
-                </div>
-              ))}
+            <div className="relative w-full overflow-hidden rounded-xl shadow-xl" style={{ aspectRatio: "16/9" }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/BYP6AfIQgx4?autoplay=1&mute=1&loop=1&playlist=BYP6AfIQgx4&controls=0&modestbranding=1&rel=0"
+                title="CDC Housing"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
             </div>
           </AnimatedSection>
         </div>
@@ -191,7 +180,7 @@ export default function NrbPage() {
                 <p className="text-secondary text-xs tracking-widest uppercase mb-3.5">Our NRB Services</p>
                 <h2 className="font-serif text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
                   Complete property solutions<br />
-                  <span className="italic text-secondary">from land to handover.</span>
+                  <span className="text-secondary">from land to handover.</span>
                 </h2>
                 <div className="w-12 h-0.5 bg-secondary mt-5" />
               </div>
@@ -223,7 +212,7 @@ export default function NrbPage() {
           <AnimatedSection animation="fade-up" className="text-center">
             <p className="text-secondary text-xs tracking-widest uppercase mb-3.5">How It Works</p>
             <h2 className="font-serif text-primary leading-tight max-w-xl mx-auto mb-4" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
-              Your journey from <span className="italic text-secondary">abroad to home.</span>
+              Your journey from <span className="text-secondary">abroad to home.</span>
             </h2>
             <div className="w-12 h-0.5 bg-secondary mx-auto" />
           </AnimatedSection>
@@ -231,7 +220,7 @@ export default function NrbPage() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6 mt-14">
             {steps.map((s, i) => (
               <AnimatedSection key={s.n} animation="fade-up" delay={i * 80} className="flex flex-col items-center text-center">
-                <div className="w-14 h-14 rounded-full bg-primary border-2 border-secondary flex items-center justify-center font-serif text-xl text-secondary mb-5">
+                <div className="w-14 h-14 rounded-full bg-white border-2 border-secondary flex items-center justify-center font-serif text-xl text-secondary mb-5">
                   {s.n}
                 </div>
                 <h4 className="font-serif text-base text-primary mb-2">{s.title}</h4>
@@ -248,7 +237,7 @@ export default function NrbPage() {
           <AnimatedSection animation="fade-up">
             <p className="text-secondary text-xs tracking-widest uppercase mb-3.5">Where We Serve</p>
             <h2 className="font-serif text-primary leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
-              Serving NRBs across <span className="italic text-secondary">Europe & the Middle East.</span>
+              Serving NRBs <span className="text-secondary">around the world</span>
             </h2>
             <div className="w-12 h-0.5 bg-secondary mt-5 mb-5" />
             <p className="text-primary/60 text-base leading-relaxed max-w-xl">
@@ -280,7 +269,7 @@ export default function NrbPage() {
           <AnimatedSection animation="fade-right">
             <p className="text-secondary text-xs tracking-widest uppercase mb-3.5">Common Questions</p>
             <h2 className="font-serif text-primary leading-tight mb-5" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
-              Everything you need<br />to <span className="italic text-secondary">know.</span>
+              Everything you need<br />to <span className="text-secondary">know.</span>
             </h2>
             <div className="w-12 h-0.5 bg-secondary mb-8" />
             <NrbFaq />
@@ -289,7 +278,7 @@ export default function NrbPage() {
           <AnimatedSection animation="fade-left" delay={150} className="lg:sticky lg:top-28">
             <div className="bg-primary rounded-xl p-10 md:p-12">
               <h3 className="font-serif text-3xl text-white leading-snug mb-4">
-                Ready to build your home <span className="italic text-secondary">in Bangladesh?</span>
+                Ready to build your home <span className="text-secondary">in Bangladesh?</span>
               </h3>
               <p className="text-white/60 text-sm leading-relaxed mb-7">
                 Speak with our dedicated NRB advisor today. We&apos;ll answer all your questions and guide
@@ -313,7 +302,7 @@ export default function NrbPage() {
         <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto">
           <h2 className="font-serif text-white leading-tight mb-4" style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)" }}>
             Your dream home in Bangladesh<br />
-            starts with <span className="italic text-secondary">one conversation.</span>
+            starts with <span className="text-secondary">one conversation.</span>
           </h2>
           <p className="text-white/60 text-base mb-10">
             Join hundreds of NRBs who have trusted CDC Housing to build their legacy back home.

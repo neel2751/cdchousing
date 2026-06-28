@@ -224,7 +224,11 @@ export default function ProjectDetailView({ project }: Props) {
 
           <div className="mt-12 overflow-hidden border border-primary/10" style={{ aspectRatio: "21/9" }}>
             <iframe
-              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(project.location)}`}
+              src={
+                project.mapEmbed
+                  ? project.mapEmbed
+                  : `https://www.google.com/maps?q=${encodeURIComponent(project.location)}&output=embed`
+              }
               width="100%"
               height="100%"
               style={{ border: 0 }}

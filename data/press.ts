@@ -18,7 +18,7 @@ export const pressReleases: PressRelease[] = [
     title: "CDC Housing joins hands with 10 universities to power next-generation talent",
     excerpt:
       "Dhaka, 22 May 2026: CDC Housing has entered strategic Memorandums of Understanding with 10 leading global and regional universities, reinforcing its long-term commitment to talent.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200",
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200&auto=format&fit=crop",
     featured: true,
   },
   {

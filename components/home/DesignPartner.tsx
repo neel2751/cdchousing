@@ -15,7 +15,16 @@ export default function DesignPartner() {
         <AnimatedSection animation="fade-up" className="text-center mb-14">
           <p className="font-serif text-2xl md:text-3xl text-secondary">Our Design Partner</p>
           <p className="font-serif text-2xl md:text-3xl text-secondary mt-1">
-            In collaboration with CUBEINSIDE,
+            In collaboration with{" "}
+            <a
+              href="https://cubeinsidebd.com/?projects=all"
+              target="_blank"
+              rel="noreferrer"
+              className="underline hover:text-primary transition-colors"
+            >
+              CUBEINSIDE
+            </a>
+            ,
           </p>
           <p className="font-serif text-2xl md:text-3xl text-primary mt-1">
             CDC Housing brings visionary spaces to life.

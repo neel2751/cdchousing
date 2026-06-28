@@ -6,6 +6,17 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Press Releases" };
 
+const youtubeVideos = [
+  { id: "BYP6AfIQgx4", title: "CDC Housing Feature" },
+  { id: "XIILIoV_-RY", title: "Project Showcase" },
+  { id: "b08h_VyWR8k", title: "Behind the Build" },
+];
+
+const facebookReels = [
+  "https://www.facebook.com/reel/884553967429357",
+  "https://www.facebook.com/reel/4308361572820594",
+];
+
 export default function MediaPage() {
   const featured = pressReleases.find((p) => p.featured) ?? pressReleases[0];
 
@@ -49,6 +60,64 @@ export default function MediaPage() {
       <div className="max-w-7xl mx-auto px-5 md:px-6 pb-24 md:pb-32">
         <PressGrid />
       </div>
+
+      {/* VIDEO FEATURES */}
+      <section className="bg-light py-16 md:py-24 px-5 md:px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection animation="fade-up" className="text-center mb-12">
+            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Watch</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-primary">Video Features</h2>
+            <div className="w-16 h-px bg-secondary mx-auto mt-6" />
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {youtubeVideos.map((v, i) => (
+              <AnimatedSection key={v.id} animation="scale" delay={i * 100}>
+                <div className="relative w-full overflow-hidden rounded-lg shadow-sm" style={{ aspectRatio: "16/9" }}>
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${v.id}?rel=0`}
+                    title={v.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <p className="font-serif text-base text-primary mt-3">{v.title}</p>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL REELS */}
+      <section className="bg-white py-16 md:py-24 px-5 md:px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection animation="fade-up" className="text-center mb-12">
+            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">Social</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-primary">Reels</h2>
+            <div className="w-16 h-px bg-secondary mx-auto mt-6" />
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {facebookReels.map((url, i) => (
+              <AnimatedSection key={url} animation="scale" delay={i * 100}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between bg-light shadow-sm hover:shadow-lg transition-shadow duration-500 p-6 rounded-lg"
+                >
+                  <div>
+                    <p className="text-secondary text-xs tracking-widest uppercase mb-2">Facebook Reel</p>
+                    <h3 className="font-serif text-lg text-primary">Watch on Facebook</h3>
+                  </div>
+                  <span className="text-secondary text-xl transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
