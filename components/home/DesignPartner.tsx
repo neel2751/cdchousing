@@ -20,9 +20,10 @@ export default function DesignPartner() {
               href="https://cubeinsidebd.com/?projects=all"
               target="_blank"
               rel="noreferrer"
-              className="underline hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1 hover:text-primary transition-colors"
             >
               CUBEINSIDE
+              <span className="text-[0.7em]">↗</span>
             </a>
             ,
           </p>

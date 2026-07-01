@@ -82,12 +82,12 @@ export default function NrbPage() {
                 Non-Resident Bangladeshi Services
               </span>
             </div>
-            <h1 className="font-serif text-white leading-[1.1] mb-6" style={{ fontSize: "clamp(2.6rem, 5vw, 4.25rem)" }}>
+           <h1 className="font-serif text-white leading-[1.1] mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
               Luxury living in Bangladesh<br />
-              <span className="text-secondary">crafted to your vision</span><br />
+              <span className="text-white">crafted to your vision</span><br />
               from{" "}
               <span
-                className="text-secondary inline-block"
+                className="text-white inline-block"
                 style={{
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(12px)",
@@ -114,15 +114,15 @@ export default function NrbPage() {
 
           <AnimatedSection animation="fade-left" delay={150}>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-primary/40 backdrop-blur-md border border-white/20 rounded-xl p-6">
+              <div className="bg-primary/85 backdrop-blur-md border border-white/30 rounded-xl p-6">
                 <h3 className="font-serif text-4xl text-secondary mb-1">25+</h3>
                 <p className="text-white/65 text-sm">Completed projects delivered to proud homeowners</p>
               </div>
-              <div className="bg-primary/40 backdrop-blur-md border border-white/20 rounded-xl p-6">
+              <div className="bg-primary/85 backdrop-blur-md border border-white/30 rounded-xl p-6">
                 <h3 className="font-serif text-4xl text-secondary mb-1">100%</h3>
                 <p className="text-white/65 text-sm">Remote management — build without being in Bangladesh</p>
               </div>
-              <div className="bg-primary/40 backdrop-blur-md border border-white/20 rounded-xl p-6 col-span-2">
+              <div className="bg-primary/85 backdrop-blur-md border border-white/30 rounded-xl p-6 col-span-2">
                 <p className="text-white/55 text-xs uppercase tracking-widest mb-3">Serving NRBs in</p>
                 <div className="flex flex-wrap gap-2.5">
                   {["United Kingdom", "UAE", "Saudi Arabia", "Italy", "Germany", "+ more"].map((c) => (
@@ -160,8 +160,8 @@ export default function NrbPage() {
           <AnimatedSection animation="fade-left" delay={150}>
             <div className="relative w-full overflow-hidden rounded-xl shadow-xl" style={{ aspectRatio: "16/9" }}>
               <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/BYP6AfIQgx4?autoplay=1&mute=1&loop=1&playlist=BYP6AfIQgx4&controls=0&modestbranding=1&rel=0"
+                className="absolute inset-0 w-full h-full bg-primary/85"
+                src="https://www.youtube.com/embed/BYP6AfIQgx4?rel=0"
                 title="CDC Housing"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
