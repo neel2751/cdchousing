@@ -19,7 +19,7 @@ export default function FeaturedProjects() {
     <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 md:px-6">
 
-        <div className="flex justify-between items-center mb-8 md:mb-10">
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:justify-between sm:items-center mb-8 md:mb-10">
           <AnimatedSection animation="fade-right">
             <h2 className="font-serif text-3xl md:text-4xl text-primary">Featured Projects</h2>
           </AnimatedSection>
@@ -38,7 +38,7 @@ export default function FeaturedProjects() {
           <button
             onClick={prev}
             aria-label="Previous"
-            className="shrink-0 w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-primary/20 text-xl md:text-2xl text-primary/60 hover:border-secondary hover:text-secondary transition-colors duration-300"
+            className="shrink-0 w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-secondary text-white text-xl md:text-2xl leading-none shadow-md hover:bg-primary transition-colors duration-300"
           >
             ‹
           </button>
@@ -82,7 +82,7 @@ export default function FeaturedProjects() {
           <button
             onClick={next}
             aria-label="Next"
-            className="shrink-0 w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-primary/20 text-xl md:text-2xl text-primary/60 hover:border-secondary hover:text-secondary transition-colors duration-300"
+            className="shrink-0 w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-secondary text-white text-xl md:text-2xl leading-none shadow-md hover:bg-primary transition-colors duration-300"
           >
             ›
           </button>

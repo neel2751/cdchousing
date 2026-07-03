@@ -2,33 +2,38 @@
 import { useState } from "react";
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "", email: "", phone: "", subject: "", message: "",
-  });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    setTimeout(() => setStatus("success"), 1500);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form
+      action="https://formsubmit.co/naim@cdc.construction"
+      method="POST"
+      className="space-y-6"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <input type="hidden" name="submit_through" value="contactus" />
+        <input
+          type="hidden"
+          name="_subject"
+          value="CDC Housing website New submission!"
+        />
+        {/* <input
+          type="hidden"
+          name="_blacklist"
+          value="spammy pattern, banned term, phrase"
+        /> */}
+        {/* <input type="text" name="_honey" style={{ display: "none" }} /> */}
+        <input type="hidden" name="_template" value="table" />
+        {/* <input
+          type="hidden"
+          name="_next"
+          value="http://localhost:3000/thanks"
+        /> */}
         <div>
           <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">
             Full Name *
           </label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
+            name="fullName"
             required
             className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
             placeholder="Full Name"
@@ -41,8 +46,6 @@ export default function ContactForm() {
           <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
             required
             className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
             placeholder="Email Address"
@@ -52,22 +55,22 @@ export default function ContactForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">Phone</label>
+          <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">
+            Phone
+          </label>
           <input
             type="tel"
             name="phone"
-            value={formData.phone}
-            onChange={handleChange}
             className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
             placeholder="Phone Number"
           />
         </div>
         <div>
-          <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">Interest</label>
+          <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">
+            Interest
+          </label>
           <select
             name="subject"
-            value={formData.subject}
-            onChange={handleChange}
             className="w-full border-b border-primary/20 pb-3 text-primary bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm"
           >
             <option value="">Select Project Type</option>
@@ -80,11 +83,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">Message *</label>
+        <label className="block text-xs tracking-widest uppercase text-primary/50 mb-2">
+          Message *
+        </label>
         <textarea
           name="message"
-          value={formData.message}
-          onChange={handleChange}
           required
           rows={4}
           className="w-full border-b border-primary/20 pb-3 text-primary placeholder-primary/30 bg-transparent focus:outline-none focus:border-secondary transition-colors duration-300 text-sm resize-none"
@@ -94,20 +97,13 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending" || status === "success"}
         className="group flex items-center gap-4 bg-primary text-white text-xs tracking-widest uppercase px-10 py-4 hover:bg-secondary transition-all duration-500 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending..." : status === "success" ? "Message Sent ✓" : "Send Message"}
-        {status === "idle" && (
-          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-        )}
+        Submit
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
       </button>
-
-      {status === "success" && (
-        <p className="text-green-700 text-sm">
-          Thank you! We&apos;ll get back to you within 24 hours.
-        </p>
-      )}
     </form>
   );
 }

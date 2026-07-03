@@ -21,6 +21,7 @@ export default function HeroSection() {
   const current = useRef(0);
   const raf = useRef<number>();
   const start = useRef({ sx: 0.30, sy: 0.60 });
+  const restGap = useRef(120);
 
   useEffect(() => {
     const ease = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -29,8 +30,29 @@ export default function HeroSection() {
     const isMobile = () => window.innerWidth < 768;
 
     const setStart = () => {
-      // mobile: narrow portrait card so text sits clear in the corners
-      start.current = isMobile() ? { sx: 0.55, sy: 0.50 } : { sx: 0.35, sy: 0.90 };
+      if (isMobile()) {
+        // Size the card to exactly fill the band between the heading (top) and
+        // the paragraph (bottom) using their real rendered heights, so the image
+        // never overlaps the heading and there's no empty gap above the text.
+        const H = window.innerHeight;
+        const navEl = document.querySelector("header");
+        const navH = navEl ? navEl.getBoundingClientRect().height : 71;
+        const headH = leftRef.current ? leftRef.current.offsetHeight : 70;
+        const paraH = rightRef.current ? rightRef.current.offsetHeight : 90;
+
+        const HEADING_TOP = 96; // matches `top-24`
+        const PARA_BOTTOM = 0.05; // matches `bottom-[5%]`
+        const cardTop = HEADING_TOP + headH + 16;
+        const paraTop = H * (1 - PARA_BOTTOM) - paraH;
+        const cardBottom = paraTop - 14;
+
+        const sy = Math.max(0.4, Math.min(0.72, (cardBottom - cardTop) / H));
+        restGap.current = cardTop - navH; // rest card-top sits at navH + restGap
+        start.current = { sx: 0.86, sy };
+      } else {
+        restGap.current = 120;
+        start.current = { sx: 0.35, sy: 0.90 };
+      }
     };
 
     const readScroll = () => {
@@ -49,7 +71,7 @@ export default function HeroSection() {
       const navEl = document.querySelector("header");
       const navH = navEl ? navEl.getBoundingClientRect().height : 80;
 
-      const gap = isMobile() ? 60 : 120;
+      const gap = restGap.current;
       const Y1 = navH - (1 - SY0) * H / 2;
 
       const inPhase1 = progress < PHASE1;
@@ -127,16 +149,16 @@ export default function HeroSection() {
 
   return (
     <>
-      <div ref={wrapRef} className="relative" style={{ height: "300vh" }}>
-        <div className="sticky top-0 h-screen w-full overflow-hidden bg-light">
+      <div ref={wrapRef} className="relative" style={{ height: "300dvh" }}>
+        <div className="sticky top-0 h-[100dvh] w-full overflow-hidden bg-light">
 
           {/* HEADING — top-left corner on mobile, left-center on desktop */}
           <div
             ref={leftRef}
-            className="absolute left-4 right-[38%] md:right-auto md:left-10 lg:left-16 top-24 md:top-1/2 z-30 md:max-w-sm pointer-events-none text-left"
+            className="absolute left-4 right-[28%] md:right-auto md:left-10 lg:left-16 top-24 md:top-1/2 z-30 md:max-w-sm pointer-events-none text-left"
             style={{ willChange: "transform, opacity" }}
           >
-            <h1 className="font-serif text-[19px] md:text-5xl text-primary leading-tight font-normal">
+            <h1 className="font-serif text-[19px] max-[360px]:text-[16px] md:text-5xl text-primary leading-tight font-normal">
               European Standards
               <br />
               Bespoke Design
@@ -148,10 +170,10 @@ export default function HeroSection() {
           {/* PARAGRAPH — bottom-right corner on mobile, right-center on desktop */}
           <div
             ref={rightRef}
-            className="absolute right-4 left-[34%] md:left-auto md:right-10 lg:right-16 bottom-[8%] md:bottom-auto md:top-1/2 z-30 md:max-w-sm pointer-events-none text-right md:text-left"
+            className="absolute right-4 left-[28%] md:left-auto md:right-10 lg:right-16 bottom-[5%] md:bottom-auto md:top-1/2 z-30 md:max-w-sm pointer-events-none text-right md:text-left"
             style={{ willChange: "transform, opacity" }}
           >
-            <p className="text-primary/70 text-[11px] md:text-base leading-relaxed">
+            <p className="text-primary/70 text-[11px] md:text-base leading-snug md:leading-relaxed">
               CDC Housing brings European standard planning with bespoke architectural
               design to develop high quality residential and commercial spaces in
               Bangladesh — modern homes built with quality, comfort and long term value
@@ -165,8 +187,8 @@ export default function HeroSection() {
               ref={boxRef}
               className="relative overflow-hidden shadow-2xl"
               style={{
-                width: "100vw",
-                height: "100vh",
+                width: "100%",
+                height: "100dvh",
                 transform: "scale(0.35, 0.90)",
                 transformOrigin: "center center",
                 willChange: "transform",
