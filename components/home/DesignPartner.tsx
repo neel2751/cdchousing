@@ -23,7 +23,7 @@ export default function DesignPartner() {
               className="inline-flex items-center gap-1 hover:text-primary transition-colors"
             >
               CUBEINSIDE
-              <span className="text-[0.7em]">↗</span>
+              <span className="text-[1.1em] inline-block rotate-[45deg] opacity-100">↗</span>
             </a>
             ,
           </p>
