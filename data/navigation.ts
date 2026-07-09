@@ -21,9 +21,9 @@ export const footerLinks = {
     { label: "Privacy", href: "/privacy" },
   ],
   social: [
-    { label: "Facebook", href: "https://facebook.com", icon: "facebook" },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-    { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-    { label: "YouTube", href: "https://youtube.com", icon: "youtube" },
+    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61584589622409", icon: "facebook" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/cdc-housing-ltd/", icon: "linkedin" },
+    { label: "Instagram", href: "https://www.instagram.com/cdc.housing?fbclid=IwY2xjawSzE9dleHRuA2FlbQIxMABicmlkETFrNjJuQjY2UDlSSW9XWWd6c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpkh5zHWiZI_IrHEI3VebjOcH_aei_3jU2kPgiaj6_lgnJmXTvMcG6PplIcj_aem_-u3IdjfUzmiWWVwy5ZFZow", icon: "instagram" },
+    { label: "YouTube", href: "https://youtube.com/@cdchousingltd?si=vDeQuEqECzmAufsH", icon: "youtube" },
   ],
 };
