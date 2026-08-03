@@ -2,9 +2,9 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 
 const stadium = "https://cubeinsidebd.com/media/images/PICC-2.width-1200.jpg";
 const buildings = [
-  "https://cubeinsidebd.com/media/images/View_03.width-1200_dWhxIxo.jpg",
-  "https://cubeinsidebd.com/media/images/Corona_Camera005_0000_copy.width-1200.jpg",
-  "https://cubeinsidebd.com/media/images/2_yASENJ2.width-1200.jpg",
+  "images/1.jpg",
+  "images/2.jpg",
+  "images/3.jpg",
 ];
 
 export default function DesignPartner() {
