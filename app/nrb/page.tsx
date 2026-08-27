@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import NrbFaq from "@/components/nrb/NrbFaq";
+import Img from "@/components/shared/Img";
 
 const services = [
   { num: "01", title: "Custom Home Build", desc: "Design and build your luxury house or apartment from the ground up on your own plot in Bangladesh — fully managed remotely.", tag: "Most Popular" },
@@ -64,9 +65,11 @@ export default function NrbPage() {
       <section className="relative pt-32 md:pt-40 pb-20 md:pb-28 px-5 md:px-6 overflow-hidden">
         {/* background image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Img
             src="/images/Area-View-CDC-Housing.jpg"
             alt="Luxury home in Bangladesh"
+            priority
+            sizes="100vw"
             className="w-full h-full object-cover"
           />
           {/* dark overlay so text stays readable */}

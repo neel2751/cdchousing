@@ -1,5 +1,6 @@
 import { teamMembers } from "@/data/team";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Our Team" };
@@ -29,9 +30,10 @@ export default function TeamPage() {
               <div className="group">
 
                 <div className="overflow-hidden mb-5 md:mb-6" style={{ aspectRatio: "3/4" }}>
-                  <img
+                  <Img
                     src={member.photo}
                     alt={member.name}
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.06]"
                   />
                 </div>

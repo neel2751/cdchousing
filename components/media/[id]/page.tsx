@@ -1,5 +1,6 @@
 import { pressReleases } from "@/data/press";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -41,7 +42,7 @@ export default function PressDetailPage({ params }: Props) {
       <div className="max-w-4xl mx-auto px-5 md:px-6 py-12 md:py-16">
         <AnimatedSection animation="fade-up">
           <div className="overflow-hidden aspect-video mb-12">
-            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+            <Img src={post.image} alt={post.title} priority sizes="100vw" className="w-full h-full object-cover" />
           </div>
           <div className="prose max-w-none">
             <p className="font-serif text-xl md:text-2xl text-primary leading-relaxed mb-8">{post.excerpt}</p>
@@ -71,7 +72,7 @@ export default function PressDetailPage({ params }: Props) {
             {more.map((p) => (
               <Link key={p.id} href={`/media/${p.id}`} className="group bg-white shadow-sm hover:shadow-lg transition-shadow duration-500">
                 <div className="overflow-hidden aspect-video">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
+                  <Img src={p.image} alt={p.title} sizes="(max-width: 768px) 100vw, 33vw" className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
                 </div>
                 <div className="p-6">
                   <p className="text-secondary text-xs tracking-widest uppercase mb-3">{p.date}</p>

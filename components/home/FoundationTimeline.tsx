@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Img from "@/components/shared/Img";
 
 const milestones = [
   {
@@ -99,10 +100,11 @@ export default function FoundationTimeline() {
                     }),
               }}
             >
-              <img
+              <Img
                 src={m.image}
                 alt={m.title}
                 onError={onImgError}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{
                   filter: isActive ? "grayscale(0)" : "grayscale(1)",

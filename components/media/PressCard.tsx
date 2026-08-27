@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { PressRelease } from "@/data/press";
+import Img from "@/components/shared/Img";
 
 interface Props {
   post: PressRelease;
@@ -19,9 +20,10 @@ export default function PressCard({ post, index }: Props) {
         }}
       >
         <div className="overflow-hidden aspect-video">
-          <img
+          <Img
             src={post.image}
             alt={post.title}
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
           />
         </div>

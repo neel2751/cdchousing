@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300..700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/*
+ * The Google Fonts stylesheet is pulled in from app/layout.tsx, not with an
+ * `@import` here. An `@import` cannot start until this file has downloaded and
+ * parsed, which put the font request at the end of a serial chain
+ * (globals.css -> fonts.googleapis.com -> fonts.gstatic.com) with text
+ * blocked the whole time. A <link> in the head starts it immediately instead.
+ */
 
 :root {
 

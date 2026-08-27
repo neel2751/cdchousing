@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Img from "@/components/shared/Img";
 
 interface Props {
   images: string[];
@@ -19,6 +20,17 @@ export default function ImageCarousel({ images, alt = "", startIndex = 0, onClos
 
   const prev = () => go(current === 0 ? images.length - 1 : current - 1);
   const next = () => go(current === images.length - 1 ? 0 : current + 1);
+
+  /**
+   * Every slide sits in the viewport (absolutely stacked, hidden with opacity),
+   * so `loading="lazy"` never defers any of them — a 12-shot gallery would pull
+   * all 12 files up front. Mount only the slide either side of the current one;
+   * that still pre-warms the next arrow click without the other nine.
+   */
+  const isNear = (i: number) => {
+    const d = Math.abs(i - current);
+    return Math.min(d, images.length - d) <= 1;
+  };
 
   useEffect(() => {
     if (!onClose) return;
@@ -47,14 +59,25 @@ export default function ImageCarousel({ images, alt = "", startIndex = 0, onClos
               className="absolute inset-0 transition-opacity duration-700"
               style={{ opacity: i === current ? 1 : 0, pointerEvents: i === current ? "auto" : "none" }}
             >
-              <img
-                src={img}
-                alt={`${alt} ${i + 1}`}
-                className="w-full h-full object-contain max-h-[80vh]"
-              />
+              {isNear(i) && (
+                <Img
+                  src={img}
+                  alt={`${alt} ${i + 1}`}
+                  priority={i === current}
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="w-full h-full object-contain max-h-[80vh]"
+                />
+              )}
             </div>
           ))}
-          <img src={images[current]} alt="" className="w-full max-h-[80vh] object-contain invisible" />
+          {/* Spacer that gives the absolutely-positioned stack its height. */}
+          <Img
+            src={images[current]}
+            alt=""
+            priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="w-full max-h-[80vh] object-contain invisible"
+          />
         </div>
 
         <button
@@ -93,7 +116,15 @@ export default function ImageCarousel({ images, alt = "", startIndex = 0, onClos
           className="absolute inset-0 transition-all duration-700"
           style={{ opacity: i === current ? 1 : 0 }}
         >
-          <img src={img} alt={`${alt} ${i + 1}`} className="w-full h-full object-cover" />
+          {isNear(i) && (
+            <Img
+              src={img}
+              alt={`${alt} ${i + 1}`}
+              priority={i === current}
+              sizes="(max-width: 768px) 100vw, 66vw"
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
       ))}
 

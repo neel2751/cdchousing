@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 
 export default function FeaturedProjects() {
   const [index, setIndex] = useState(0);
@@ -44,7 +45,7 @@ export default function FeaturedProjects() {
           </button>
 
           <div className="hidden md:block w-[10%] overflow-hidden self-stretch">
-            <img src={left.thumbnail} alt={left.name} className="w-full h-full object-cover opacity-50" />
+            <Img src={left.thumbnail} alt={left.name} sizes="25vw" className="w-full h-full object-cover opacity-50" />
           </div>
 
           <div className="relative flex-1 max-w-4xl aspect-video overflow-hidden">
@@ -56,7 +57,7 @@ export default function FeaturedProjects() {
                 className="absolute inset-0 transition-opacity duration-700"
                 style={{ opacity: i === index ? 1 : 0, pointerEvents: i === index ? "auto" : "none" }}
               >
-                <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
+                <Img src={p.images[0]} alt={p.name} sizes="(max-width: 768px) 100vw, 60vw" className="w-full h-full object-cover" />
               </Link>
             ))}
 
@@ -75,7 +76,7 @@ export default function FeaturedProjects() {
           </div>
 
           <div className="hidden md:block w-[10%] overflow-hidden self-stretch">
-            <img src={right.thumbnail} alt={right.name} className="w-full h-full object-cover opacity-50" />
+            <Img src={right.thumbnail} alt={right.name} sizes="25vw" className="w-full h-full object-cover opacity-50" />
           </div>
 
           {/* arrow OUTSIDE right */}

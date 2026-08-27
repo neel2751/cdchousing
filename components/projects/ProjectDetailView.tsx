@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Project } from "@/data/projects";
 import ImageCarousel from "./ImageCarousel";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 
 interface Props {
   project: Project;
@@ -82,7 +83,7 @@ export default function ProjectDetailView({ project }: Props) {
 
       {/* HERO IMAGE */}
       <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/9" }}>
-        <img src={project.images[0]} alt={project.name} className="w-full h-full object-cover" />
+        <Img src={project.images[0]} alt={project.name} priority sizes="100vw" className="w-full h-full object-cover" />
       </div>
 
       {/* PROJECT OVERVIEW */}
@@ -122,9 +123,10 @@ export default function ProjectDetailView({ project }: Props) {
                 style={{ aspectRatio: "16/11" }}
                 onClick={() => openCarousel(i)}
               >
-                <img
+                <Img
                   src={img}
                   alt={`${project.name} ${i + 1}`}
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/25 transition-all duration-500 flex items-center justify-center">
@@ -172,9 +174,10 @@ export default function ProjectDetailView({ project }: Props) {
                 className="relative shrink-0 overflow-hidden group"
                 style={{ width: "260px", aspectRatio: "3/4" }}
               >
-                <img
+                <Img
                   src={project.images[i % project.images.length]}
                   alt={feature}
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { teamMembers } from "@/data/team";
+import Img from "@/components/shared/Img";
 
 export default function TeamGallery() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -50,9 +51,10 @@ export default function TeamGallery() {
             className="relative flex-shrink-0 overflow-hidden group"
             style={{ width: "280px", height: "380px" }}
           >
-            <img
+            <Img
               src={member.photo}
               alt={member.name}
+              sizes="(max-width: 768px) 70vw, 30vw"
               className="w-full h-full object-cover object-top transition-transform duration-[1.2s] group-hover:scale-105 pointer-events-none"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />

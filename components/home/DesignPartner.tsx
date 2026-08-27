@@ -1,10 +1,15 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 
-const stadium = "https://cubeinsidebd.com/media/images/PICC-2.width-1200.jpg";
+// Served locally rather than hot-linked from cubeinsidebd.com: a third-party
+// origin costs an extra DNS + TLS round trip and we already ship this file.
+const stadium = "/images/PICC-2.width-1200.jpeg";
+// Leading slashes matter — `trailingSlash: true` makes bare relative paths
+// resolve against the current route (e.g. /projects/x/images/1.jpg).
 const buildings = [
-  "images/1.jpg",
-  "images/2.jpg",
-  "images/3.jpg",
+  "/images/1.jpg",
+  "/images/2.jpg",
+  "/images/3.jpg",
 ];
 
 export default function DesignPartner() {
@@ -34,9 +39,10 @@ export default function DesignPartner() {
 
         <AnimatedSection animation="fade-up">
           <div className="overflow-hidden mb-4" style={{ aspectRatio: "16 / 9" }}>
-            <img
+            <Img
               src={stadium}
               alt=""
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105"
             />
           </div>
@@ -46,9 +52,10 @@ export default function DesignPartner() {
           {buildings.map((src, i) => (
             <AnimatedSection key={i} animation="fade-up" delay={i * 100}>
               <div className="overflow-hidden" style={{ aspectRatio: "3 / 4" }}>
-                <img
+                <Img
                   src={src}
                   alt=""
+                  sizes="(max-width: 768px) 50vw, 25vw"
                   className="w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105"
                 />
               </div>

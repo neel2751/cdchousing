@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 
 const steps = [
   {
@@ -92,7 +93,12 @@ export default function ProcessSection() {
                   transform: activeTab === i ? "scale(1)" : "scale(1.04)",
                 }}
               >
-                <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
+                <Img
+                  src={step.image}
+                  alt={step.title}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-linear-to-t from-primary/60 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8">
                   <span className="font-mono text-secondary text-4xl font-bold opacity-60">
