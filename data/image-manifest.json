@@ -1,0 +1,230 @@
+{
+  "/images/1.jpg": {
+    "src": "/images/1-1200.webp",
+    "width": 1200,
+    "height": 1510,
+    "srcSet": "/images/1-640.webp 640w, /images/1-1024.webp 1024w, /images/1-1200.webp 1200w"
+  },
+  "/images/2.jpg": {
+    "src": "/images/2-1200.webp",
+    "width": 1200,
+    "height": 1714,
+    "srcSet": "/images/2-640.webp 640w, /images/2-1024.webp 1024w, /images/2-1200.webp 1200w"
+  },
+  "/images/3.jpg": {
+    "src": "/images/3-1200.webp",
+    "width": 1200,
+    "height": 1579,
+    "srcSet": "/images/3-640.webp 640w, /images/3-1024.webp 1024w, /images/3-1200.webp 1200w"
+  },
+  "/images/Area-View-CDC-Housing.jpg": {
+    "src": "/images/area-view-cdc-housing-2048.webp",
+    "width": 2048,
+    "height": 1365,
+    "srcSet": "/images/area-view-cdc-housing-768.webp 768w, /images/area-view-cdc-housing-1280.webp 1280w, /images/area-view-cdc-housing-1920.webp 1920w, /images/area-view-cdc-housing-2048.webp 2048w"
+  },
+  "/images/CDC-project/CDC_H1.png": {
+    "src": "/images/CDC-project/cdc-h1-1086.webp",
+    "width": 1086,
+    "height": 1448,
+    "srcSet": "/images/CDC-project/cdc-h1-640.webp 640w, /images/CDC-project/cdc-h1-1024.webp 1024w, /images/CDC-project/cdc-h1-1086.webp 1086w"
+  },
+  "/images/CDC-project/CDC_H10.png": {
+    "src": "/images/CDC-project/cdc-h10-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcSet": "/images/CDC-project/cdc-h10-640.webp 640w, /images/CDC-project/cdc-h10-1024.webp 1024w, /images/CDC-project/cdc-h10-1600.webp 1600w"
+  },
+  "/images/CDC-project/CDC_H11.png": {
+    "src": "/images/CDC-project/cdc-h11-1600.webp",
+    "width": 1600,
+    "height": 901,
+    "srcSet": "/images/CDC-project/cdc-h11-640.webp 640w, /images/CDC-project/cdc-h11-1024.webp 1024w, /images/CDC-project/cdc-h11-1600.webp 1600w"
+  },
+  "/images/CDC-project/CDC_H2.png": {
+    "src": "/images/CDC-project/cdc-h2-1086.webp",
+    "width": 1086,
+    "height": 1448,
+    "srcSet": "/images/CDC-project/cdc-h2-640.webp 640w, /images/CDC-project/cdc-h2-1024.webp 1024w, /images/CDC-project/cdc-h2-1086.webp 1086w"
+  },
+  "/images/CDC-project/CDC_H3.png": {
+    "src": "/images/CDC-project/cdc-h3-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "srcSet": "/images/CDC-project/cdc-h3-640.webp 640w, /images/CDC-project/cdc-h3-1024.webp 1024w, /images/CDC-project/cdc-h3-1448.webp 1448w"
+  },
+  "/images/CDC-project/CDC_H4.png": {
+    "src": "/images/CDC-project/cdc-h4-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "srcSet": "/images/CDC-project/cdc-h4-640.webp 640w, /images/CDC-project/cdc-h4-1024.webp 1024w, /images/CDC-project/cdc-h4-1448.webp 1448w"
+  },
+  "/images/CDC-project/CDC_H5.png": {
+    "src": "/images/CDC-project/cdc-h5-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "srcSet": "/images/CDC-project/cdc-h5-640.webp 640w, /images/CDC-project/cdc-h5-1024.webp 1024w, /images/CDC-project/cdc-h5-1448.webp 1448w"
+  },
+  "/images/CDC-project/CDC_H6.png": {
+    "src": "/images/CDC-project/cdc-h6-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcSet": "/images/CDC-project/cdc-h6-640.webp 640w, /images/CDC-project/cdc-h6-1024.webp 1024w, /images/CDC-project/cdc-h6-1600.webp 1600w"
+  },
+  "/images/CDC-project/CDC_H7.png": {
+    "src": "/images/CDC-project/cdc-h7-1600.webp",
+    "width": 1600,
+    "height": 903,
+    "srcSet": "/images/CDC-project/cdc-h7-640.webp 640w, /images/CDC-project/cdc-h7-1024.webp 1024w, /images/CDC-project/cdc-h7-1600.webp 1600w"
+  },
+  "/images/CDC-project/CDC_H8.png": {
+    "src": "/images/CDC-project/cdc-h8-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcSet": "/images/CDC-project/cdc-h8-640.webp 640w, /images/CDC-project/cdc-h8-1024.webp 1024w, /images/CDC-project/cdc-h8-1600.webp 1600w"
+  },
+  "/images/CDC-project/CDC_H9.png": {
+    "src": "/images/CDC-project/cdc-h9-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcSet": "/images/CDC-project/cdc-h9-640.webp 640w, /images/CDC-project/cdc-h9-1024.webp 1024w, /images/CDC-project/cdc-h9-1600.webp 1600w"
+  },
+  "/images/CDC-project/cover.png": {
+    "src": "/images/CDC-project/cover-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcSet": "/images/CDC-project/cover-640.webp 640w, /images/CDC-project/cover-1024.webp 1024w, /images/CDC-project/cover-1600.webp 1600w"
+  },
+  "/images/PICC-2.width-1200.jpeg": {
+    "src": "/images/picc-2.width-1200-1200.webp",
+    "width": 1200,
+    "height": 1201,
+    "srcSet": "/images/picc-2.width-1200-640.webp 640w, /images/picc-2.width-1200-1024.webp 1024w, /images/picc-2.width-1200-1200.webp 1200w"
+  },
+  "/images/basundhara/1.jpg": {
+    "src": "/images/basundhara/1-1200.webp",
+    "width": 1200,
+    "height": 1714,
+    "srcSet": "/images/basundhara/1-640.webp 640w, /images/basundhara/1-1024.webp 1024w, /images/basundhara/1-1200.webp 1200w"
+  },
+  "/images/basundhara/2.jpg": {
+    "src": "/images/basundhara/2-1200.webp",
+    "width": 1200,
+    "height": 1306,
+    "srcSet": "/images/basundhara/2-640.webp 640w, /images/basundhara/2-1024.webp 1024w, /images/basundhara/2-1200.webp 1200w"
+  },
+  "/images/basundhara/3.jpg": {
+    "src": "/images/basundhara/3-1200.webp",
+    "width": 1200,
+    "height": 1714,
+    "srcSet": "/images/basundhara/3-640.webp 640w, /images/basundhara/3-1024.webp 1024w, /images/basundhara/3-1200.webp 1200w"
+  },
+  "/images/basundhara/4.jpg": {
+    "src": "/images/basundhara/4-1200.webp",
+    "width": 1200,
+    "height": 799,
+    "srcSet": "/images/basundhara/4-640.webp 640w, /images/basundhara/4-1024.webp 1024w, /images/basundhara/4-1200.webp 1200w"
+  },
+  "/images/basundhara/5.jpg": {
+    "src": "/images/basundhara/5-1200.webp",
+    "width": 1200,
+    "height": 960,
+    "srcSet": "/images/basundhara/5-640.webp 640w, /images/basundhara/5-1024.webp 1024w, /images/basundhara/5-1200.webp 1200w"
+  },
+  "/images/basundhara/cover.jpg": {
+    "src": "/images/basundhara/cover-1600.webp",
+    "width": 1600,
+    "height": 800,
+    "srcSet": "/images/basundhara/cover-640.webp 640w, /images/basundhara/cover-1024.webp 1024w, /images/basundhara/cover-1600.webp 1600w"
+  },
+  "/images/dhaka-skyline.jpg": {
+    "src": "/images/dhaka-skyline-2560.webp",
+    "width": 2560,
+    "height": 954,
+    "srcSet": "/images/dhaka-skyline-768.webp 768w, /images/dhaka-skyline-1280.webp 1280w, /images/dhaka-skyline-1920.webp 1920w, /images/dhaka-skyline-2560.webp 2560w"
+  },
+  "/images/dilu-road/1.jpg": {
+    "src": "/images/dilu-road/1-1200.webp",
+    "width": 1200,
+    "height": 1510,
+    "srcSet": "/images/dilu-road/1-640.webp 640w, /images/dilu-road/1-1024.webp 1024w, /images/dilu-road/1-1200.webp 1200w"
+  },
+  "/images/dilu-road/2.jpg": {
+    "src": "/images/dilu-road/2-1200.webp",
+    "width": 1200,
+    "height": 1333,
+    "srcSet": "/images/dilu-road/2-640.webp 640w, /images/dilu-road/2-1024.webp 1024w, /images/dilu-road/2-1200.webp 1200w"
+  },
+  "/images/dilu-road/3.jpg": {
+    "src": "/images/dilu-road/3-1200.webp",
+    "width": 1200,
+    "height": 1616,
+    "srcSet": "/images/dilu-road/3-640.webp 640w, /images/dilu-road/3-1024.webp 1024w, /images/dilu-road/3-1200.webp 1200w"
+  },
+  "/images/dilu-road/4.jpg": {
+    "src": "/images/dilu-road/4-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "srcSet": "/images/dilu-road/4-640.webp 640w, /images/dilu-road/4-1024.webp 1024w, /images/dilu-road/4-1200.webp 1200w"
+  },
+  "/images/dilu-road/5.jpg": {
+    "src": "/images/dilu-road/5-1200.webp",
+    "width": 1200,
+    "height": 1333,
+    "srcSet": "/images/dilu-road/5-640.webp 640w, /images/dilu-road/5-1024.webp 1024w, /images/dilu-road/5-1200.webp 1200w"
+  },
+  "/images/dilu-road/6.jpg": {
+    "src": "/images/dilu-road/6-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "srcSet": "/images/dilu-road/6-640.webp 640w, /images/dilu-road/6-1024.webp 1024w, /images/dilu-road/6-1200.webp 1200w"
+  },
+  "/images/dilu-road/cover.jpg": {
+    "src": "/images/dilu-road/cover-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcSet": "/images/dilu-road/cover-640.webp 640w, /images/dilu-road/cover-1024.webp 1024w, /images/dilu-road/cover-1600.webp 1600w"
+  },
+  "/images/foundation/Architectural Design.jpg": {
+    "src": "/images/foundation/architectural-design-1600.webp",
+    "width": 1600,
+    "height": 1067,
+    "srcSet": "/images/foundation/architectural-design-640.webp 640w, /images/foundation/architectural-design-1024.webp 1024w, /images/foundation/architectural-design-1600.webp 1600w"
+  },
+  "/images/foundation/Comfortable Living.jpg": {
+    "src": "/images/foundation/comfortable-living-1600.webp",
+    "width": 1600,
+    "height": 1095,
+    "srcSet": "/images/foundation/comfortable-living-640.webp 640w, /images/foundation/comfortable-living-1024.webp 1024w, /images/foundation/comfortable-living-1600.webp 1600w"
+  },
+  "/images/foundation/Long-Term Value.jpg": {
+    "src": "/images/foundation/long-term-value-1600.webp",
+    "width": 1600,
+    "height": 1067,
+    "srcSet": "/images/foundation/long-term-value-640.webp 640w, /images/foundation/long-term-value-1024.webp 1024w, /images/foundation/long-term-value-1600.webp 1600w"
+  },
+  "/images/foundation/Quality Construction.jpg": {
+    "src": "/images/foundation/quality-construction-1600.webp",
+    "width": 1600,
+    "height": 1066,
+    "srcSet": "/images/foundation/quality-construction-640.webp 640w, /images/foundation/quality-construction-1024.webp 1024w, /images/foundation/quality-construction-1600.webp 1600w"
+  },
+  "/images/foundation/Safety And Reliability.jpg": {
+    "src": "/images/foundation/safety-and-reliability-1600.webp",
+    "width": 1600,
+    "height": 1600,
+    "srcSet": "/images/foundation/safety-and-reliability-640.webp 640w, /images/foundation/safety-and-reliability-1024.webp 1024w, /images/foundation/safety-and-reliability-1600.webp 1600w"
+  },
+  "/images/foundation/Sustainable Development.jpg": {
+    "src": "/images/foundation/sustainable-development-1600.webp",
+    "width": 1600,
+    "height": 1067,
+    "srcSet": "/images/foundation/sustainable-development-640.webp 640w, /images/foundation/sustainable-development-1024.webp 1024w, /images/foundation/sustainable-development-1600.webp 1600w"
+  },
+  "/images/hero-4.jpg": {
+    "src": "/images/hero-4-2560.webp",
+    "width": 2560,
+    "height": 1435,
+    "srcSet": "/images/hero-4-768.webp 768w, /images/hero-4-1280.webp 1280w, /images/hero-4-1920.webp 1920w, /images/hero-4-2560.webp 2560w"
+  }
+}

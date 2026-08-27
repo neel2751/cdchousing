@@ -1,5 +1,6 @@
 import PressGrid from "@/components/media/PressGrid";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 import { pressReleases } from "@/data/press";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -36,9 +37,10 @@ export default function MediaPage() {
         <AnimatedSection animation="fade-up">
           <Link href={`/media/${featured.id}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="overflow-hidden aspect-4/3 order-2 lg:order-1">
-              <img
+              <Img
                 src={featured.image}
                 alt={featured.title}
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="w-full h-full object-cover transition-transform duration-[1.4s] group-hover:scale-105"
               />
             </div>

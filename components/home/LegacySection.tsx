@@ -1,4 +1,5 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 
 export default function LegacySection() {
   return (
@@ -47,9 +48,10 @@ export default function LegacySection() {
 
           <AnimatedSection animation="fade-left" delay={150} className="relative">
             <div className="relative overflow-hidden aspect-4/5">
-              <img
+              <Img
                 src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800"
                 alt="CDC Housing Legacy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="w-full h-full object-cover transition-transform duration-[2s] hover:scale-105"
               />
               <div className="absolute inset-0 border border-secondary/20" />

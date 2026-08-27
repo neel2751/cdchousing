@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { TeamMember } from "@/data/team";
+import Img from "@/components/shared/Img";
 
 interface Props {
   member: TeamMember;
@@ -22,9 +23,10 @@ export default function TeamCard({ member, index }: Props) {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="overflow-hidden aspect-[3/4]">
-        <img
+        <Img
           src={member.photo}
           alt={member.name}
+          sizes="(max-width: 768px) 50vw, 25vw"
           className="w-full h-full object-cover object-top transition-transform duration-[1.2s] group-hover:scale-110"
         />
       </div>

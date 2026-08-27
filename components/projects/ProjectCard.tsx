@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Project } from "@/data/projects";
+import Img from "@/components/shared/Img";
 
 interface Props {
   project: Project;
@@ -19,9 +20,10 @@ export default function ProjectCard({ project, index }: Props) {
       }}
     >
       <div className="overflow-hidden" style={{ aspectRatio: "16 / 11" }}>
-        <img
+        <Img
           src={project.images[0]}
           alt={project.name}
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
         />
       </div>

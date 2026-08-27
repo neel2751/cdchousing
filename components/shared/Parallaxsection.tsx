@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useEffect, useState, ReactNode } from "react";
+import Img from "@/components/shared/Img";
 
 interface Props {
   imageUrl: string;
@@ -48,9 +49,10 @@ export default function ParallaxSection({
           transition: "transform 0.05s linear",
         }}
       >
-        <img
+        <Img
           src={imageUrl}
           alt=""
+          sizes="100vw"
           className="w-full h-full object-cover"
         />
       </div>

@@ -2,6 +2,7 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import Img from "@/components/shared/Img";
 
 const heroImages = [
   "/images/hero-4.jpg",
@@ -203,11 +204,14 @@ export default function HeroSection() {
                   willChange: "transform",
                 }}
               >
-                {heroImages.map((src) => (
-                  <img
+                {heroImages.map((src, i) => (
+                  <Img
                     key={src}
                     src={src}
                     alt="CDC Housing residential development"
+                    // The first frame is the LCP element on the home page.
+                    priority={i === 0}
+                    sizes="100vw"
                     className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                 ))}

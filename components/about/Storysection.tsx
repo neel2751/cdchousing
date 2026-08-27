@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Img from "@/components/shared/Img";
 
 const milestones = [
   { year: "2018", title: "Our Foundation", desc: "CDC was established in the United Kingdom in 2018. The company was founded with a clear vision of creating stunning living spaces built to British standards. Today, CDC Housing operates as a key component of CDC's broader global expansion." },
@@ -100,9 +101,10 @@ export default function StorySection() {
             "image-reveal-visible"
           }`}
         >
-          <img
+          <Img
             src="/images/dhaka-skyline.jpg"
             alt="CDC Housing headquarters"
+            sizes="100vw"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-primary/30" />
